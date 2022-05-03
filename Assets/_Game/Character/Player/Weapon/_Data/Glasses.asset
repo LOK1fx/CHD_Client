@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f8c4668cfb672429f4b4e07bbfc74f, type: 3}
+  m_Name: Glasses
+  m_EditorClassIdentifier: 
+  _useKey: 323
+  _altUseKey: 324
+  _damage: 20
+  _startBulletForce: 700
+  _bulletsPerShoot: 0
+  _fireRate: 10
+  _shootDistance: 1000
+  _adsSpeed: 1
+  _shootsFromMuzzle: 0
+  BurstMode: 0
+  Hand: 1
+  _bloom: 1
+  _bloomXMultiplier: 1
+  _bloomYMultiplier: 1
+  _shootFovChange: 0.4
+  _shootCameraOffset: {x: 0, y: 0, z: -0.05}
+  _recoilCameraRotation: {x: 2, y: 2, z: 2}
+  _animatorController: {fileID: 22100000, guid: c1e3816f9bc48fe4886d7d5d30ac8124, type: 2}
+  _projectilePrefab: {fileID: 5683537475582720638, guid: 847c12c2102d4674895c21308ea5bb65, type: 3}
+  _gunPrefab: {fileID: 4879845962668051348, guid: 268cec31f69277b408c13c350e75efda, type: 3}
+  _shellPrefab: {fileID: 0}
