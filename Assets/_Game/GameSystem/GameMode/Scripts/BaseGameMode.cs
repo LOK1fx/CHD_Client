@@ -27,6 +27,8 @@ public abstract class BaseGameMode : IGameMode
         }
 
         GameModeSpawnedObjects.Add(gameObject);
+
+        Object.DontDestroyOnLoad(gameObject);
     }
 
     protected IEnumerator DestroyAllGameModeObjects()

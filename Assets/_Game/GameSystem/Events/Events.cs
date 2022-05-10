@@ -6,6 +6,13 @@ namespace LOK1game.Game.Events
         public static OnCameraPoccesEvent OnCameraPoccesEvent = new OnCameraPoccesEvent();
         public static OnMaskUseEvent OnMaskUseEvent = new OnMaskUseEvent();
         public static OnAnimatronicChangeRoomEvent OnAnimatronicChangeRoom = new OnAnimatronicChangeRoomEvent();
+        public static OnPlayerHitCHD OnPlayerHit = new OnPlayerHitCHD();
+    }
+
+    public class OnPlayerHitCHD : GameEvent
+    {
+        public ushort PlayerId;
+        public bool Crit;
     }
 
     public class OnAnimatronicChangeRoomEvent : GameEvent

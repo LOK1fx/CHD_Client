@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestRoom
   m_EditorClassIdentifier: 
   LevelImage: {fileID: 21300000, guid: a1d126da2bebb634aa3fa01c4994f75e, type: 3}
-  BuildIndex: 4
-  Name: TestRoom
+  BuildIndex: 1
+  Name: TestLevel
   IsCompleted: 0

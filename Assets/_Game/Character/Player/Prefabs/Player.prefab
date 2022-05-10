@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camTransform: {fileID: 2639441562097676139}
+  _visuals: {fileID: 0}
 --- !u!114 &-993949586262210499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c026824c6827649b6d2ac43395cbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHp: 100
+  _deathLength: 5
+  _playerDeathCameraPrefab: {fileID: 8738168328727241441, guid: 6601ce55be50a8749bd456d0f7ee9c15,
+    type: 3}
   _eyeHeight: 1.65
   _crouchEyeHeight: 1.25
 --- !u!114 &8745851072079396820
@@ -380,7 +385,7 @@ MonoBehaviour:
   - {fileID: 809185538549815650}
   - {fileID: 329251404522104672}
   WeaponInventory:
-  - {fileID: 11400000, guid: 7b1618072a2f3c742a3cfd23adea5c21, type: 2}
+  - {fileID: 11400000, guid: 3241ede67b892f34bbb471ca880636a5, type: 2}
   _armsAnimator: {fileID: 8915360147031534763}
 --- !u!114 &6766453443796197371
 MonoBehaviour:
@@ -562,7 +567,7 @@ Camera:
   m_GameObject: {fileID: 2639441562249833004}
   m_Enabled: 0
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -619,12 +624,12 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
@@ -666,7 +671,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7756097, y: 1}
+    m_SensorSize: {x: 1.7769911, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

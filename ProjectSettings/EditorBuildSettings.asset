@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Game/Scenes/SampleScene.unity
+    path: Assets/_Game/Scenes/Menu.unity
+    guid: a3adace2e86033149b53c390d2f1baba
+  - enabled: 1
+    path: Assets/_Game/Scenes/TestLevel.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_Game/Scenes/ParkourLevel.unity
+    guid: 78a4041874d1f2647b38064cc2e6bd91
   m_configObjects: {}

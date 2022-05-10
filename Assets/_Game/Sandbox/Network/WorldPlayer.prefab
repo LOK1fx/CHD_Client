@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1255899604077944537}
   - component: {fileID: 9088365798011048733}
   - component: {fileID: -5032613907654688567}
-  m_Layer: 0
+  - component: {fileID: 3045712989560911469}
+  m_Layer: 8
   m_Name: WorldPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camTransform: {fileID: 6839054261135539747}
+  _visuals: {fileID: 62582456731000744}
 --- !u!114 &-5032613907654688567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +65,20 @@ MonoBehaviour:
   _movementThreshold: 0.05
   _timeElapsed: 0
   _timeToReachTarget: 0.05
+--- !u!136 &3045712989560911469
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255899604077944536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.49
+  m_Height: 1.98
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3745723683519955238
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +130,7 @@ Light:
   m_InnerSpotAngle: 54.347534
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -279,6 +295,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b68cf5923b322304ea0df664001dba37, type: 3}
+--- !u!1 &62582456731000744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b68cf5923b322304ea0df664001dba37,
+    type: 3}
+  m_PrefabInstance: {fileID: 873486913490805497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &834721487489271058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b68cf5923b322304ea0df664001dba37,

@@ -2,22 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RiptideNetworking;
+using LOK1game.Tools;
+using System;
 
 namespace LOK1game.New.Networking
 {
-    public class NetworkPlayer : MonoBehaviour
+    public class NetworkPlayer : MonoBehaviour, IDamagable
     {
+        #region Events
+
+        public event Action<int> OnHealthChanged;
+        public static event Action<int> OnSpawned;
+
+        #endregion
+
         public static Dictionary<ushort, NetworkPlayer> List = new Dictionary<ushort, NetworkPlayer>();
 
         public ushort Id { get; private set; }
+        public string Username { get; private set; }
         public bool IsLocal { get; private set; }
+        public int Hp { get; private set; }
 
         [SerializeField] private Transform _camTransform;
+        [SerializeField] private GameObject _visuals;
 
         private Interpolator _interpolator;
         private NetworkPlayerController _playerController;
+        private Player.Player _player;
 
-        private string _username;
 
         private void Awake()
         {
@@ -25,8 +37,15 @@ namespace LOK1game.New.Networking
             _playerController = GetComponent<NetworkPlayerController>();
         }
 
+        private void Start()
+        {
+            Hp = 100;
+        }
+
         public static void Spawn(ushort id, string username, Vector3 position)
         {
+            if(List.ContainsKey(id)) { return; }
+
             NetworkPlayer player;
 
             if(id == NetworkManager.Instance.Client.Id)
@@ -40,13 +59,22 @@ namespace LOK1game.New.Networking
                 player.IsLocal = false;
             }
 
+            DontDestroyOnLoad(player.gameObject);
+
             var name = $"Player {id} ({(string.IsNullOrEmpty(username) ? $"Guest {id}" : username)})";
 
             player.name = name;
             player.Id = id;
-            player._username = username;
+            player.Username = username;
+
+            if (player.IsLocal)
+            {
+                player._player = player.gameObject.GetComponent<Player.Player>();
+            }
 
             List.Add(id, player);
+
+            OnSpawned?.Invoke(id);
         }
 
         private static NetworkPlayer GetPlayerPrefab(GameObject prefab, Vector3 position)
@@ -56,7 +84,6 @@ namespace LOK1game.New.Networking
 
         private void Move(ushort tick, bool isTeleport, Vector3 newPosition, Vector3 forward, Vector3 position)
         {
-            
             if (!IsLocal)
             {
                 _camTransform.forward = forward;
@@ -71,6 +98,30 @@ namespace LOK1game.New.Networking
                 };
 
                 _playerController.OnServerMovementState(serverState);
+            }
+        }
+
+        //local
+        public void TakeDamage(Damage damage)
+        {
+            var message = Message.Create(MessageSendMode.reliable, (ushort)EClientToServerId.HitPlayer);
+
+            message.AddUShort(Id);
+            message.AddInt(damage.Value);
+
+            NetworkManager.Instance.Client.Send(message);
+        }
+
+        private void Death(ushort killer)
+        {
+            if(!IsLocal)
+            {
+                List.Remove(Id);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Coroutines.StartRoutine(_player.DeathRoutine());
             }
         }
 
@@ -94,6 +145,24 @@ namespace LOK1game.New.Networking
             {
                 player.Move(message.GetUShort(), message.GetBool(), message.GetVector3(), message.GetVector3(), message.GetVector3());
             }
+        }
+
+        [MessageHandler((ushort)EServerToClientId.PlayerHited)]
+        private static void PlayerHit(Message message)
+        {
+            var id = message.GetUShort();
+            var damage = new Damage(message.GetInt());
+
+            List[id].Hp -= damage.Value;
+        }
+
+        [MessageHandler((ushort)EServerToClientId.PlayerDeath)]
+        private static void PlayerDeath(Message message)
+        {
+            var id = message.GetUShort();
+            var killer = message.GetUShort();
+
+            List[id].Death(killer);
         }
 
         #endregion

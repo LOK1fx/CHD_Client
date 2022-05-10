@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PostProcessing
+  - WorldPostProcessing
   - Water
   - UI
   - Ground
   - Weapon
   - Enemy
-  - 
+  - PlayerPostProccessing
   - 
   - 
   - 

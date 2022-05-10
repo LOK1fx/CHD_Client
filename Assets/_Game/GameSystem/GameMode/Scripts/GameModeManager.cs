@@ -2,8 +2,13 @@ using System.Collections;
 using UnityEngine;
 using LOK1game.Tools;
 
+[System.Serializable]
 public class GameModeManager
 {
+    public DefaultGameMode GameMode => _gameMode;
+
+    [SerializeField] private DefaultGameMode _gameMode;
+
     private IGameMode _currentGameMode;
     private bool _isSwithing;
 

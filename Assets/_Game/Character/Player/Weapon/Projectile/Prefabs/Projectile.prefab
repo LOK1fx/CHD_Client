@@ -136,7 +136,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1360
   _lifeTime: 2
-  _bulletHolePrefab: {fileID: 0}
+  _bulletHolePrefab: {fileID: 6064126109968739150, guid: e3b88e0e4d433394399a30d174e6f1b7,
+    type: 3}
 --- !u!114 &-4655765397988166312
 MonoBehaviour:
   m_ObjectHideFlags: 0

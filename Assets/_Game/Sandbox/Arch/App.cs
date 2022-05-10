@@ -3,16 +3,41 @@ using System;
 
 public class App : MonoBehaviour
 {
-    public GameModeManager GameModeManager { get; private set; }
+    public static App Instance
+    {
+        get => _instance;
 
-    [SerializeField] private DefaultGameMode _gameMode;
+        private set
+        {
+            if (_instance == null)
+            {
+                _instance = value;
+            }
+            else if (_instance != value)
+            {
+                Debug.LogWarning($"{nameof(App)} instane already exist!");
+
+                Destroy(value);
+
+                Debug.Log($"Duplicate of {nameof(App)} has been destroyed.");
+            }
+        }
+    }
+
+    private static App _instance;
+
+    public GameModeManager GameModeManager => _gameModeManager;
+    public LevelManager LevelManager => _levelManager;
+
+    [SerializeField] private GameModeManager _gameModeManager = new GameModeManager();
+    [SerializeField] private LevelManager _levelManager = new LevelManager();
 
     private const string _appGameobjectName = "[App]";
 
     #region Boot
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Boot()
+    private static void Bootstrap()
     {
         var app = Instantiate(Resources.Load(_appGameobjectName)) as GameObject;
 
@@ -30,11 +55,12 @@ public class App : MonoBehaviour
 
     private void Awake()
     {
-        GameModeManager = new GameModeManager();
+        _instance = this;
     }
 
     private void Start()
     {
-        GameModeManager.SwitchGameMode(_gameMode);
+        GameModeManager.SwitchGameMode(GameModeManager.GameMode);
+        LevelManager.Initialize();
     }
 }

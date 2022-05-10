@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+[System.Serializable]
+public class LevelManager
 {
     public static List<LevelData> LevelsData { get; private set; }
 
-    [SerializeField] private List<LevelData> _levelsData;
+    [SerializeField] private List<LevelData> _levelsData = new List<LevelData>();
 
-    private void Awake()
+    public void Initialize()
     {
         LevelsData = _levelsData;
 

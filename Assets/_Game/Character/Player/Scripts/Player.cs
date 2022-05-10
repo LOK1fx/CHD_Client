@@ -1,14 +1,33 @@
+using LOK1game.Tools;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace LOK1game.Player
 {
     [RequireComponent(typeof(PlayerCamera), typeof(PlayerWeapon), typeof(PlayerMovement))]
-    public class Player : Pawn
+    public class Player : Pawn, IDamagable
     {
+        #region Events
+
+        public event Action<int> OnTakeDamage;
+
+        #endregion
+
         public PlayerCamera PlayerCamera { get; private set; }
         public PlayerWeapon PlayerWeapon { get; private set; }
         public PlayerMovement PlayerMovement { get; private set; }
         public PlayerState PlayerState { get; private set; }
+
+        public int Hp { get; private set; }
+
+        [SerializeField] private int _maxHp = 100;
+        [SerializeField] private float _deathLength = 5f;
+
+        [Space]
+        [SerializeField] private GameObject _playerDeathCameraPrefab;
+
+        private bool _isDead;
 
         private PlayerArmsBobbing _armsBobbing;
 
@@ -32,6 +51,8 @@ namespace LOK1game.Player
         private void Start()
         {
             PlayerCamera.DesiredPosition = Vector3.up * _eyeHeight;
+
+            Hp = _maxHp;
         }
 
         private void Update()
@@ -126,6 +147,33 @@ namespace LOK1game.Player
         public override void OnPocces(PlayerControllerBase sender)
         {
             
+        }
+
+        public void TakeDamage(Damage damage)
+        {
+            Hp -= damage.Value;
+
+            if(Hp <= 0)
+            {
+                Coroutines.StartRoutine(DeathRoutine());
+            }
+        }
+
+        public IEnumerator DeathRoutine()
+        {
+            _isDead = true;
+
+            var camera = Instantiate(_playerDeathCameraPrefab, transform.position, PlayerMovement.DirectionTransform.rotation);
+
+            gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(_deathLength);
+
+            gameObject.SetActive(true);
+
+            _isDead = false;
+
+            Destroy(camera);
         }
     }
 }

@@ -13,6 +13,10 @@ namespace LOK1game.New.Networking
         PlayerSpawned,
         PlayerMovement,
         Pong,
+        SyncLevel,
+        PlayerHited,
+        PlayerDeath,
+        PlayerHealth,
     }
 
     public enum EClientToServerId : ushort
@@ -20,6 +24,7 @@ namespace LOK1game.New.Networking
         Name = 1,
         Input,
         Ping,
+        HitPlayer,
     }
 
     public class NetworkManager : MonoBehaviour
@@ -154,11 +159,21 @@ namespace LOK1game.New.Networking
             }
         }
 
+        #region Messages
+
         [MessageHandler((ushort)EServerToClientId.SyncTick)]
-        public static void Sync(Message message)
+        private static void SyncTick(Message message)
         {
             Instance.SetTick(message.GetUShort());
         }
+
+        [MessageHandler((ushort)EServerToClientId.SyncLevel)]
+        private static void SyncLevel(Message message)
+        {
+            NetworkGameLogic.Instance.SetLevel(message.GetUShort());
+        }
+
+        #endregion
 
         private void OnApplicationQuit()
         {
