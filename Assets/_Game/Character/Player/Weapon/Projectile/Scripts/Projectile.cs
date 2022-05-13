@@ -12,6 +12,7 @@ namespace LOK1game.Weapon
 #endif
 
         [SerializeField] private LayerMask _hitableLayer;
+        [SerializeField] private QueryTriggerInteraction _triggerInteraction;
         [SerializeField] private float _lifeTime = 4f;
 
         [Space]
@@ -41,7 +42,7 @@ namespace LOK1game.Weapon
             //Проверка на пролёт снаряда сквозь объекты.
             //Если скорость снаряда слишком большая, он может просто пролететь мимо его.
             //Делается рейкаст с позиции снаряда в прошлом кадре в текущую.
-            if(Physics.Linecast(_previusPosition, transform.position, out var hit, _hitableLayer, QueryTriggerInteraction.Collide))
+            if(Physics.Linecast(_previusPosition, transform.position, out var hit, _hitableLayer, _triggerInteraction))
             {
                 Impact(hit);
 

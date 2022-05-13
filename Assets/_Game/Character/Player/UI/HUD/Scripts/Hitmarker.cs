@@ -4,17 +4,21 @@ using LOK1game.New.Networking;
 
 namespace LOK1game.UI
 {
-    [RequireComponent(typeof(Animator))]
+    //Note: v. 2021.3.1f1 unity animation controller isn't working
+    //Setting up the animator controller is impossible
+    [RequireComponent(typeof(Animation))] // [RequireComponent(typeof(Animator))]
     public class Hitmarker : MonoBehaviour
     {
         private const string TRIGGER_ON_HIT = "Hit";
         private const string TRIGGER_ON_CRIT_HIT = "CritHit";
 
-        private Animator _animator;
+        [SerializeField] private float _maxRotationAngleOnHit = 5f;
+
+        private Animation _animator; //Animator
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            _animator = GetComponent<Animation>(); //Animator
         }
 
         private void Start()
@@ -24,15 +28,25 @@ namespace LOK1game.UI
 
         private void OnHit(OnPlayerHitCHD evt)
         {
-            if(NetworkManager.Instance.Client.Id == evt.PlayerId) { return; }
+            if(NetworkManager.Instance != null)
+            {
+                if (NetworkManager.Instance.Client.Id == evt.PlayerId) { return; }
+            }
+
+            var angle = Random.Range(-_maxRotationAngleOnHit, _maxRotationAngleOnHit);
+
+            transform.localRotation = Quaternion.Euler(0f, 0f, angle);
 
             if (evt.Crit)
             {
-                _animator.SetTrigger(TRIGGER_ON_CRIT_HIT);
+                //Note: v. 2021.3.1f1 unity animation controller isn't working
+                //Setting up the animator controller is impossible
+                //_animator.SetTrigger(TRIGGER_ON_CRIT_HIT);
             }
             else
             {
-                _animator.SetTrigger(TRIGGER_ON_HIT);
+                _animator.Stop();
+                _animator.Play();
             }
         }
     }

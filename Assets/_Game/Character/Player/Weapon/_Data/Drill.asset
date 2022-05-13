@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f8c4668cfb672429f4b4e07bbfc74f, type: 3}
+  m_Name: Drill
+  m_EditorClassIdentifier: 
+  _useKey: 323
+  _altUseKey: 324
+  _damage: 1
+  _startBulletForce: 80
+  _bulletsPerShoot: 1
+  _fireRate: 12
+  _shootDistance: 10
+  _adsSpeed: 8
+  _shootsFromMuzzle: 1
+  BurstMode: 1
+  Hand: 0
+  _bloom: 25
+  _bloomXMultiplier: 1
+  _bloomYMultiplier: 1
+  _shootFovChange: 0
+  _shootCameraOffset: {x: 0, y: 0, z: 0.01}
+  _recoilCameraRotation: {x: 0.2, y: 0.1, z: 0.25}
+  _animatorController: {fileID: 22100000, guid: 912f2ffa20277594a9d4b775a4652aef,
+    type: 2}
+  _projectilePrefab: {fileID: 0}
+  _gunPrefab: {fileID: 2632870192118547275, guid: 90e9b38ac8b15a34e892b2198f8d6e18,
+    type: 3}
+  _shellPrefab: {fileID: 0}

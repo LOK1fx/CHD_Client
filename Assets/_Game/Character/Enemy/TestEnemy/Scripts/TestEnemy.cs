@@ -1,3 +1,4 @@
+using LOK1game.Game.Events;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,6 +46,12 @@ namespace LOK1game.Test
             _health.ReduceHealth(damage.Value);
 
             Debug.Log($"{gameObject.name}: Take the hit - {damage.Value}d");
+
+            var evt = Events.OnPlayerHit;
+
+            evt.PlayerId = 999;
+
+            EventManager.Broadcast(evt);
 
             SetMeshesMaterial(_hurtedMaterial);
             _currentResetMatTimer = _resetHurtTime;

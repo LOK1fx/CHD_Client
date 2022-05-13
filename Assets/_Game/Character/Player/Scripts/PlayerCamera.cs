@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 namespace LOK1game.Player
 {
@@ -7,7 +8,6 @@ namespace LOK1game.Player
         public float Tilt;
 
         [SerializeField] private float _sensivity = 8f;
-        [SerializeField] private Camera _camera;
         [SerializeField] private Transform _cameraTransform;
 
         [Space]
@@ -45,8 +45,6 @@ namespace LOK1game.Player
 
             DesiredPosition = _cameraTransform.localPosition;
 
-            SetFov(_defaultFov);
-
             GetComponent<PlayerInputManager>().PawnInputs.Add(this);
         }
 
@@ -70,16 +68,6 @@ namespace LOK1game.Player
         public void TriggerRecoil(Vector3 recoil)
         {
             _recoilCameraRotation += new Vector3(-recoil.x, Random.Range(-recoil.y, recoil.y), Random.Range(-recoil.z, recoil.z));
-        }
-
-        public void SmoothSetFov(float fov)
-        {
-            _camera.fieldOfView = Mathf.MoveTowards(_camera.fieldOfView, fov, Time.deltaTime * _fovChangeSpeed);
-        }
-
-        public void SetFov(float fov)
-        {
-            _camera.fieldOfView = fov;
         }
 
         public void OnInput(object sender)
@@ -150,19 +138,9 @@ namespace LOK1game.Player
             return _recoilCamera.transform;
         }
 
-        public Camera GetCamera()
-        {
-            return _camera;
-        }
-
         public float GetDefaultFov()
         {
             return _defaultFov;
-        }
-
-        public float GetCurrentFov()
-        {
-            return _camera.fieldOfView;
         }
 
         public void OnPocces(PlayerControllerBase sender)

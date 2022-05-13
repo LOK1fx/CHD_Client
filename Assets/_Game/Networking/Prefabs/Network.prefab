@@ -762,7 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldPlayerPrefab: {fileID: 1255899604077944536, guid: c8ab063f5fbea8e47b68ca8bdc944a41,
     type: 3}
-  _localPlayerPrefab: {fileID: 2639441561070333288, guid: 23e54eaf5bd3c9e41a148780dd15c8f1,
+  _localPlayerPrefab: {fileID: 560224126738436198, guid: a09de93cfdb75874986f60d282a9ba78,
     type: 3}
   _level: 0
 --- !u!1 &3488854713671963307

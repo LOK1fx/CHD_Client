@@ -5,11 +5,12 @@ using LOK1game.Tools;
 [System.Serializable]
 public class GameModeManager
 {
-    public DefaultGameMode GameMode => _gameMode;
+    public CrystalCaptureGameMode GameMode => _gameMode;
 
-    [SerializeField] private DefaultGameMode _gameMode;
+    [SerializeField] private CrystalCaptureGameMode _gameMode;
 
-    private IGameMode _currentGameMode;
+    public IGameMode CurrentGameMode { get; private set; }
+
     private bool _isSwithing;
 
     public void SwitchGameMode(IGameMode gameMode)
@@ -21,21 +22,21 @@ public class GameModeManager
     {
         yield return new WaitUntil(() => !_isSwithing);
 
-        if(_currentGameMode == gameMode)
+        if(CurrentGameMode == gameMode)
         {
             yield break;
         }
 
         _isSwithing = true;
 
-        if(_currentGameMode != null)
+        if(CurrentGameMode != null)
         {
-            yield return _currentGameMode.OnEnd();
+            yield return CurrentGameMode.OnEnd();
         }
 
-        _currentGameMode = gameMode;
+        CurrentGameMode = gameMode;
 
-        yield return _currentGameMode.OnStart();
+        yield return CurrentGameMode.OnStart();
 
         _isSwithing = false;
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useKey: 323
   _altUseKey: 324
-  _damage: 20
+  _damage: 15
   _startBulletForce: 750
   _bulletsPerShoot: 1
   _fireRate: 15

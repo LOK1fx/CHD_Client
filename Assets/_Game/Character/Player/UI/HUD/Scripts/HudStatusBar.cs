@@ -12,7 +12,7 @@ namespace LOK1game.UI
 
         private void Start()
         {
-            NetworkManager.Instance.Client.Disconnected += OnDisconnected;
+            New.Networking.NetworkPlayer.OnDestroyed += OnPlayerDestroyed;
             New.Networking.NetworkPlayer.OnSpawned += OnPlayerSpawned;
         }
 
@@ -24,8 +24,7 @@ namespace LOK1game.UI
 
             _playerNickname.text = clientPlayer.Username.ToString();
         }
-
-        private void OnDisconnected(object sender, System.EventArgs e)
+        private void OnPlayerDestroyed(int id)
         {
             var clientPlayer = New.Networking.NetworkPlayer.List[NetworkManager.Instance.Client.Id];
 

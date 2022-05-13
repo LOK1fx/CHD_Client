@@ -4,6 +4,7 @@ using UnityEngine;
 using RiptideNetworking;
 using LOK1game.Tools;
 using System;
+using LOK1game.Game.Events;
 
 namespace LOK1game.New.Networking
 {
@@ -13,6 +14,7 @@ namespace LOK1game.New.Networking
 
         public event Action<int> OnHealthChanged;
         public static event Action<int> OnSpawned;
+        public static event Action<int> OnDestroyed;
 
         #endregion
 
@@ -42,9 +44,15 @@ namespace LOK1game.New.Networking
             Hp = 100;
         }
 
-        public static void Spawn(ushort id, string username, Vector3 position)
+        public static void Spawn(ushort id, string username, Vector3 position, bool respawn)
         {
-            if(List.ContainsKey(id)) { return; }
+            if(respawn)
+            {
+                if (List.ContainsKey(id))
+                {
+                    return;
+                }
+            }
 
             NetworkPlayer player;
 
@@ -116,6 +124,7 @@ namespace LOK1game.New.Networking
         {
             if(!IsLocal)
             {
+                OnDestroyed?.Invoke(Id);
                 List.Remove(Id);
                 Destroy(gameObject);
             }
@@ -135,7 +144,7 @@ namespace LOK1game.New.Networking
         [MessageHandler((ushort)EServerToClientId.PlayerSpawned)]
         private static void SpawnPlayer(Message message)
         {
-            Spawn(message.GetUShort(), message.GetString(), message.GetVector3());
+            Spawn(message.GetUShort(), message.GetString(), message.GetVector3(), message.GetBool());
         }
 
         [MessageHandler((ushort)EServerToClientId.PlayerMovement)]
@@ -147,6 +156,16 @@ namespace LOK1game.New.Networking
             }
         }
 
+        [MessageHandler((ushort)EServerToClientId.PlayerHealth)]
+        private static void PlayerHealth(Message message)
+        {
+            var id = message.GetUShort();
+            var health = message.GetInt();
+
+            List[id].Hp = health;
+            List[id].OnHealthChanged?.Invoke(health);
+        }
+
         [MessageHandler((ushort)EServerToClientId.PlayerHited)]
         private static void PlayerHit(Message message)
         {
@@ -154,6 +173,13 @@ namespace LOK1game.New.Networking
             var damage = new Damage(message.GetInt());
 
             List[id].Hp -= damage.Value;
+
+            var evt = Events.OnPlayerHit;
+
+            evt.PlayerId = id;
+            evt.Crit = false;
+
+            EventManager.Broadcast(evt);
         }
 
         [MessageHandler((ushort)EServerToClientId.PlayerDeath)]

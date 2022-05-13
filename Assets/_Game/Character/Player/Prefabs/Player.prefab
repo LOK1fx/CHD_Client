@@ -215,9 +215,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2639441561070333289}
-  - component: {fileID: 6772203469535426206}
-  - component: {fileID: -993949586262210499}
-  - component: {fileID: -5693851663078367826}
   - component: {fileID: 871902337365939739}
   - component: {fileID: 7662659393912315664}
   - component: {fileID: 7250010309612696274}
@@ -255,48 +252,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6772203469535426206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639441561070333288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3936833b5784104c885386ab8be3363, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camTransform: {fileID: 2639441562097676139}
-  _visuals: {fileID: 0}
---- !u!114 &-993949586262210499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639441561070333288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8217a5eee26ce3c4ab50b4205c31fe5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cameraTransform: {fileID: 2639441562097676139}
---- !u!114 &-5693851663078367826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639441561070333288}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87013de415df9134eaa7f2849185b9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementThreshold: 0.01
-  _timeElapsed: 0
-  _timeToReachTarget: 0.05
 --- !u!114 &871902337365939739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tilt: 0
   _sensivity: 4
-  _camera: {fileID: 2639441562249833007}
+  _camera: {fileID: 7114326230251971130}
   _cameraTransform: {fileID: 2639441562097676139}
   _maxRightViewAngle: 360
   _maxLeftViewAngle: 360
@@ -666,7 +621,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 500
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}

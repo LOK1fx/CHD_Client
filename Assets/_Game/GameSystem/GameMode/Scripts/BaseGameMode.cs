@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+public enum EGameModeState
+{
+    Started,
+    Starting,
+    Ending,
+    Ended
+}
+
+[Serializable]
 public abstract class BaseGameMode : IGameMode
 {
+    public EGameModeState State { get; protected set; }
     public List<GameObject> GameModeSpawnedObjects { get; private set; }
 
     private bool _isGameModeObjectListInitialized;
@@ -14,7 +25,6 @@ public abstract class BaseGameMode : IGameMode
     public GameObject PlayerController;
 
     public abstract IEnumerator OnEnd();
-
     public abstract IEnumerator OnStart();
 
     protected void RegisterGameModeObject(GameObject gameObject)
@@ -28,7 +38,7 @@ public abstract class BaseGameMode : IGameMode
 
         GameModeSpawnedObjects.Add(gameObject);
 
-        Object.DontDestroyOnLoad(gameObject);
+        GameObject.DontDestroyOnLoad(gameObject);
     }
 
     protected IEnumerator DestroyAllGameModeObjects()
@@ -36,7 +46,7 @@ public abstract class BaseGameMode : IGameMode
         foreach (var obj in GameModeSpawnedObjects)
         {
             GameModeSpawnedObjects.Remove(obj);
-            Object.Destroy(obj);
+            GameObject.Destroy(obj);
 
             yield return new WaitForEndOfFrame();
         }

@@ -4,12 +4,13 @@ namespace LOK1game
 {
     public struct Damage
     {
-        public enum Type
+        public enum Type : ushort
         {
-            Normal,
+            Normal = 1,
             Lazer,
             Void,
-            Hit
+            Hit,
+            Drill,
         }
 
         public Actor Sender { get; private set; }

@@ -5,8 +5,6 @@ using System;
 [Serializable]
 public class DefaultGameMode : BaseGameMode
 {
-    protected EGameModeState state;
-
     public override IEnumerator OnStart()
     {
         Debug.Log("GameMode started");
@@ -19,27 +17,19 @@ public class DefaultGameMode : BaseGameMode
 
         RegisterGameModeObject(ui);
 
-        state = EGameModeState.Started;
+        State = EGameModeState.Started;
 
         yield return null;
     }
 
     public override IEnumerator OnEnd()
     {
-        state = EGameModeState.Ending;
+        State = EGameModeState.Ending;
 
         yield return DestroyAllGameModeObjects();
 
         Debug.Log("GameMode endend");
 
-        state = EGameModeState.Ended;
+        State = EGameModeState.Ended;
     }
-}
-
-public enum EGameModeState
-{
-    Started,
-    Starting,
-    Ending,
-    Ended
 }

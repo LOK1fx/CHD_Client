@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using RiptideNetworking;
 using RiptideNetworking.Utils;
@@ -11,6 +9,7 @@ namespace LOK1game.New.Networking
     {
         SyncTick = 1,
         PlayerSpawned,
+        PlayerRespawn,
         PlayerMovement,
         Pong,
         SyncLevel,
