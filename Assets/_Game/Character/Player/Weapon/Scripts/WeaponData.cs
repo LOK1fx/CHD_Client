@@ -2,11 +2,22 @@ using UnityEngine;
 
 namespace LOK1game.Weapon
 {
+    public enum EWeaponType : ushort
+    {
+        Primary = 1,
+        Secondary,
+        Ability,
+        Utility,
+    }
+
     [CreateAssetMenu(fileName = "new WeapomData", menuName = "WeaponData")]
     public class WeaponData : ScriptableObject
     {
         public EWeaponId Id => _id;
+        public EWeaponType Type => _type;
+
         [SerializeField] private EWeaponId _id = EWeaponId.None;
+        [SerializeField] private EWeaponType _type = EWeaponType.Primary;
 
         [Space]
         [SerializeField] private KeyCode _useKey = KeyCode.Mouse0;

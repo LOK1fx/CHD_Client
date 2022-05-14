@@ -43,7 +43,10 @@ namespace LOK1game.Player
         {
             Camera.DesiredPosition = Vector3.up * _eyeHeight;
 
-            Weapon.Equip(WeaponInventory.Weapons[0], PlayerHand.Side.Right);
+            if(WeaponInventory.Weapons[0] != null)
+            {
+                EquipWeapon(WeaponInventory.Weapons[0]);
+            }
         }
 
         private void Update()

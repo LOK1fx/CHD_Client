@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GroundCrystal
   m_EditorClassIdentifier: 
   _id: 5
+  _type: 3
   _useKey: 323
   _altUseKey: 324
   _damage: 60

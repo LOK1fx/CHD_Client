@@ -13,5 +13,26 @@ namespace LOK1game.Player
         [SerializeField] private List<WeaponData> _weapons;
         [SerializeField] private List<WeaponData> _abilities;
         [SerializeField] private WeaponData _utility;
+
+        public void SetWeapon(EWeaponId id)
+        {
+            var weapon = WeaponLibrary.GetWeaponData(id);
+
+            switch (weapon.Type)
+            {
+                case EWeaponType.Primary:
+                    _weapons[0] = weapon;
+                    break;
+                case EWeaponType.Secondary:
+                    _weapons[1] = weapon;
+                    break;
+                case EWeaponType.Ability:
+                    _abilities[0] = weapon;
+                    break;
+                case EWeaponType.Utility:
+                    _utility = weapon;
+                    break;
+            }
+        }
     }
 }

@@ -10,21 +10,27 @@ namespace LOK1game.New.Networking.UI
 
         private void Start()
         {
-            NetworkPlayer.OnDestroyed += OnPlayerDestroyed;
             NetworkPlayer.OnSpawned += OnPlayerSpawned;
+            NetworkPlayer.OnDestroyed += OnPlayerDestroyed;
         }
 
-        private void OnPlayerSpawned(int id)
+        private void OnPlayerSpawned(ushort id)
         {
+            Debug.Log($"Client id - {NetworkManager.Instance.Client.Id}");
+
             var clientPlayer = NetworkPlayer.List[NetworkManager.Instance.Client.Id];
+
+            if (id != clientPlayer.Id) { return; }
 
             clientPlayer.OnHealthChanged += SetHealthBarValue;
 
             _playerNickname.text = clientPlayer.Username.ToString();
         }
-        private void OnPlayerDestroyed(int id)
+        private void OnPlayerDestroyed(ushort id)
         {
             var clientPlayer = NetworkPlayer.List[NetworkManager.Instance.Client.Id];
+
+            if(id != clientPlayer.Id) { return; }
 
             clientPlayer.OnHealthChanged -= SetHealthBarValue;
         }

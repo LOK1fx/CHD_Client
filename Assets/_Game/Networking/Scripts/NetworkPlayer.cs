@@ -13,8 +13,8 @@ namespace LOK1game.New.Networking
         #region Events
 
         public event Action<int> OnHealthChanged;
-        public static event Action<int> OnSpawned;
-        public static event Action<int> OnDestroyed;
+        public static event Action<ushort> OnSpawned;
+        public static event Action<ushort> OnDestroyed;
 
         #endregion
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Drill
   m_EditorClassIdentifier: 
   _id: 4
+  _type: 4
   _useKey: 323
   _altUseKey: 324
   _damage: 1

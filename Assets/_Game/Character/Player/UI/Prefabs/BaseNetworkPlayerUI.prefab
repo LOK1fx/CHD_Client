@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2af55781f85d3946bad5b4f2bf9d7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerNickname: {fileID: 0}
+  _playerNickname: {fileID: 5034978674280071725}
   _playerHealthBar: {fileID: 8905426065036521785}
 --- !u!224 &8905426065036521785 stripped
 RectTransform:

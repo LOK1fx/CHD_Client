@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameModeManager:
     _gameMode:
-      UiPrefab: {fileID: 477668509425952702, guid: 83b19753f1207b44795a6603cf5ec2d4,
+      UiPrefab: {fileID: 1954939184536541391, guid: 67d41d7c0e91f2a44a5be022e612a5f5,
         type: 3}
       CameraPrefab: {fileID: 779169692165051414, guid: 0f75bdcdb4a7a1a44ab469660a9c9b90,
         type: 3}
