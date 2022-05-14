@@ -10,7 +10,6 @@ namespace LOK1game.Player
 
         [SerializeField] private LayerMask _groundMask;
         [Range(0, 1)]
-        [SerializeField] private float _requiredDotproduct = 0.8f;
         [SerializeField] private float _requiredSpeed = 4f;
         [SerializeField] private Vector3 _speedAfterVaultMultiplier = new Vector3(0.4f, 0f, 0.4f);
 
@@ -33,7 +32,7 @@ namespace LOK1game.Player
 
         private void Vault()
         {
-            var playerMovement = _player.PlayerMovement;
+            var playerMovement = _player.Movement;
             var maxVaultPos = transform.position + Vector3.up * Constants.Gameplay.PLAYER_HEIGHT;
             var dir = playerMovement.ActualMoveDirection;
             dir.y = 0f;
@@ -61,7 +60,7 @@ namespace LOK1game.Player
             var height = landPos.y - transform.position.y;
 
             //MoveCamera.Instance.vaultOffset += transform.position - landPos;
-            _player.PlayerCamera.GetCameraTransform().localPosition = (transform.position - landPos) + _player.PlayerCamera.DesiredPosition;
+            _player.Camera.GetCameraTransform().localPosition = (transform.position - landPos) + _player.Camera.DesiredPosition;
 
             transform.position = landPos;
 

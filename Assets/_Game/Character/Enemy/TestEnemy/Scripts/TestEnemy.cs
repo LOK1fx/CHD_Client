@@ -1,12 +1,18 @@
 using LOK1game.Game.Events;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace LOK1game.Test
 {
     [RequireComponent(typeof(Health))]
     public class TestEnemy : Actor, IDamagable
     {
+        [SerializeField] private bool _debug_test_is_agent;
+        [SerializeField] private Transform _debug_test_target;
+        private NavMeshAgent _debug_test_agent;
+
+        [Space]
         [SerializeField] private float _resetHurtTime = 1f;
         [SerializeField] private Material _hurtedMaterial;
         [SerializeField] private Renderer[] _meshes;
@@ -24,6 +30,11 @@ namespace LOK1game.Test
             {
                 _defaultMaterials.Add(mesh.sharedMaterial);
             }
+
+            if(_debug_test_is_agent)
+            {
+                _debug_test_agent = GetComponent<NavMeshAgent>();
+            }
         }
 
         private void Update()
@@ -38,6 +49,11 @@ namespace LOK1game.Test
                 {
                     _meshes[i].sharedMaterial = _defaultMaterials[i];
                 }
+            }
+
+            if(_debug_test_is_agent && _debug_test_agent != null)
+            {
+                _debug_test_agent.SetDestination(_debug_test_target.position);
             }
         }
 

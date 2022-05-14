@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 1207394066861480460}
   - component: {fileID: 2566172387191555155}
   - component: {fileID: 8430240514281588127}
-  - component: {fileID: 9158916812248583895}
   m_Layer: 5
   m_Name: Hitmarker
   m_TagString: Untagged
@@ -268,7 +267,7 @@ Animator:
   m_GameObject: {fileID: 4547988742082656705}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d6a387a36a08f7b42b1f9965de784d98, type: 2}
+  m_Controller: {fileID: 9100000, guid: ac0e423cbf3afd5489b3280b37a0c886, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -278,23 +277,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &9158916812248583895
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4547988742082656705}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 67dc93d3eb01f6c4faabbd2ea4570fd1, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 67dc93d3eb01f6c4faabbd2ea4570fd1, type: 2}
-  - {fileID: 7400000, guid: 67dc93d3eb01f6c4faabbd2ea4570fd1, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &6765120698829758197
 GameObject:
   m_ObjectHideFlags: 0

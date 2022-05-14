@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useKey: 323
   _altUseKey: 324
-  _damage: 15
+  _damage: 12
   _startBulletForce: 750
   _bulletsPerShoot: 1
-  _fireRate: 15
+  _fireRate: 12
   _shootDistance: 1000
   _adsSpeed: 1
   _shootsFromMuzzle: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   _bloomXMultiplier: 1
   _bloomYMultiplier: 1
   _shootFovChange: 0.4
-  _shootCameraOffset: {x: 0, y: 0, z: -0.05}
+  _shootCameraOffset: {x: 0, y: 0, z: -0.07}
   _recoilCameraRotation: {x: 3, y: 2, z: 0.05}
   _animatorController: {fileID: 22100000, guid: 1b5d4dec6993ce8409fb286657b6410a,
     type: 2}

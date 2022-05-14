@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f8c4668cfb672429f4b4e07bbfc74f, type: 3}
   m_Name: GroundCrystal
   m_EditorClassIdentifier: 
-  _useKey: 99
+  _useKey: 323
   _altUseKey: 324
   _damage: 60
   _startBulletForce: 80

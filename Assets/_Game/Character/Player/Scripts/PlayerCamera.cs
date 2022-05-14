@@ -20,7 +20,6 @@ namespace LOK1game.Player
 
         [Space]
         [SerializeField] private float _defaultFov = 65f;
-        [SerializeField] private float _fovChangeSpeed = 1f;
 
         [HideInInspector] public Vector3 DesiredPosition;
 

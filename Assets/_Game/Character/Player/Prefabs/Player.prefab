@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 7662659393912315664}
   - component: {fileID: 7250010309612696274}
   - component: {fileID: 8745851072079396820}
+  - component: {fileID: 4965434078216423089}
   - component: {fileID: 6333072809131031989}
   - component: {fileID: 6766453443796197371}
   - component: {fileID: 3019256043151992828}
@@ -291,10 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c026824c6827649b6d2ac43395cbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 100
-  _deathLength: 5
   _playerDeathCameraPrefab: {fileID: 8738168328727241441, guid: 6601ce55be50a8749bd456d0f7ee9c15,
     type: 3}
+  _deathLength: 5
   _eyeHeight: 1.65
   _crouchEyeHeight: 1.25
 --- !u!114 &8745851072079396820
@@ -311,7 +311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tilt: 0
   _sensivity: 4
-  _camera: {fileID: 7114326230251971130}
   _cameraTransform: {fileID: 2639441562097676139}
   _maxRightViewAngle: 360
   _maxLeftViewAngle: 360
@@ -324,6 +323,24 @@ MonoBehaviour:
   _recoilCamera: {fileID: 5233325290159437623}
   _recoilCameraRotationSpeed: 20
   _recoilCameraReturnSpeed: 17
+--- !u!114 &4965434078216423089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2639441561070333288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5cfd39c432cb314b8d565fb8c40b18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapons:
+  - {fileID: 11400000, guid: 3241ede67b892f34bbb471ca880636a5, type: 2}
+  - {fileID: 11400000, guid: 7b1618072a2f3c742a3cfd23adea5c21, type: 2}
+  _abilities:
+  - {fileID: 11400000, guid: 2b6469a9354f20a43a84892971dc7a48, type: 2}
+  _utility: {fileID: 11400000, guid: 120ac702fa9b37f439729f25cc25c353, type: 2}
 --- !u!114 &6333072809131031989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,8 +356,6 @@ MonoBehaviour:
   _playerHands:
   - {fileID: 809185538549815650}
   - {fileID: 329251404522104672}
-  WeaponInventory:
-  - {fileID: 11400000, guid: 3241ede67b892f34bbb471ca880636a5, type: 2}
   _armsAnimator: {fileID: 8915360147031534763}
 --- !u!114 &6766453443796197371
 MonoBehaviour:
@@ -979,6 +994,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 541069857661797360, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -4565884009001823619, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
+    - target: {fileID: 541069857661797360, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -840037777384891287, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
     - target: {fileID: 573062824352731444, guid: 1d4615380408c2846888d5599cf5603e,
         type: 3}
       propertyPath: m_Layer
@@ -989,6 +1016,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 747271072098259926, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -4565884009001823619, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
+    - target: {fileID: 747271072098259926, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -840037777384891287, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
     - target: {fileID: 753224931965249431, guid: 1d4615380408c2846888d5599cf5603e,
         type: 3}
       propertyPath: m_Layer
@@ -1144,6 +1183,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2268842903851958073, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -4565884009001823619, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
+    - target: {fileID: 2268842903851958073, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -840037777384891287, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
     - target: {fileID: 2320954951910321501, guid: 1d4615380408c2846888d5599cf5603e,
         type: 3}
       propertyPath: m_Layer
@@ -1664,6 +1715,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8378141230603633214, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -4565884009001823619, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
+    - target: {fileID: 8378141230603633214, guid: 1d4615380408c2846888d5599cf5603e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -840037777384891287, guid: 7678281af9163f4418f7b4eb4140f996,
+        type: 3}
     - target: {fileID: 8446426940691534441, guid: 1d4615380408c2846888d5599cf5603e,
         type: 3}
       propertyPath: m_Layer

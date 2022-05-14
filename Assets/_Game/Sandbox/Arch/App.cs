@@ -60,7 +60,7 @@ public class App : MonoBehaviour
 
     private void Start()
     {
-        GameModeManager.SwitchGameMode(GameModeManager.GameMode);
+        GameModeManager.SwitchGameMode(GameModeManager.CrystalCaptureGameMode);
         LevelManager.Initialize();
     }
 }

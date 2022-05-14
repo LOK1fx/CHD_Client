@@ -49,7 +49,7 @@ namespace LOK1game
 
         public void OnInput(object sender)
         {
-            if (_player.PlayerState.OnGround)
+            if (_player.State.OnGround)
             {
                 if (Input.GetKeyDown(KeyCode.W))
                 {
@@ -86,7 +86,7 @@ namespace LOK1game
         {
             _armsOffset.AddTemp(Vector3.down * _armsOffsetOnActions);
 
-            if (_player.PlayerState.IsCrouching)
+            if (_player.State.IsCrouching)
             {
                 _armsBob.bobMultiplier = _crouchArmsBobMultiplier;
             }
@@ -106,7 +106,7 @@ namespace LOK1game
         {
             _armsOffset.AddTemp(Vector3.up * _armsOffsetOnActions);
 
-            if (_player.PlayerState.OnGround)
+            if (_player.State.OnGround)
             {
                 _armsBob.bobMultiplier = _defaultArmsBobMultiplier;
             }
@@ -118,7 +118,7 @@ namespace LOK1game
 
         protected override void SubscribeToEvents()
         {
-            var playerMovement = _player.PlayerMovement;
+            var playerMovement = _player.Movement;
 
             playerMovement.OnJump += OnJump;
             playerMovement.OnLand += OnLand;
@@ -128,7 +128,7 @@ namespace LOK1game
 
         protected override void UnsubscribeFromEvents()
         {
-            var playerMovement = _player.PlayerMovement;
+            var playerMovement = _player.Movement;
 
             playerMovement.OnJump -= OnJump;
             playerMovement.OnLand -= OnLand;

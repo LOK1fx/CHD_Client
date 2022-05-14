@@ -5,7 +5,7 @@ using LOK1game.Tools;
 [System.Serializable]
 public class GameModeManager
 {
-    public CrystalCaptureGameMode GameMode => _gameMode;
+    public CrystalCaptureGameMode CrystalCaptureGameMode => _gameMode;
 
     [SerializeField] private CrystalCaptureGameMode _gameMode;
 

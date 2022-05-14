@@ -2,32 +2,22 @@ using LOK1game.Tools;
 using System;
 using System.Collections;
 using UnityEngine;
+using LOK1game.Weapon;
 
 namespace LOK1game.Player
 {
     [RequireComponent(typeof(PlayerCamera), typeof(PlayerWeapon), typeof(PlayerMovement))]
-    public class Player : Pawn, IDamagable
+    public class Player : Pawn
     {
-        #region Events
-
-        public event Action<int> OnTakeDamage;
-
-        #endregion
-
-        public PlayerCamera PlayerCamera { get; private set; }
-        public PlayerWeapon PlayerWeapon { get; private set; }
-        public PlayerMovement PlayerMovement { get; private set; }
-        public PlayerState PlayerState { get; private set; }
-
-        public int Hp { get; private set; }
-
-        [SerializeField] private int _maxHp = 100;
-        [SerializeField] private float _deathLength = 5f;
+        public PlayerCamera Camera { get; private set; }
+        public PlayerWeapon Weapon { get; private set; }
+        public PlayerWeaponInventory WeaponInventory { get; private set; }
+        public PlayerMovement Movement { get; private set; }
+        public PlayerState State { get; private set; }
 
         [Space]
         [SerializeField] private GameObject _playerDeathCameraPrefab;
-
-        private bool _isDead;
+        [SerializeField] private float _deathLength = 5f;
 
         private PlayerArmsBobbing _armsBobbing;
 
@@ -36,10 +26,11 @@ namespace LOK1game.Player
 
         private void Awake()
         {       
-            PlayerCamera = GetComponent<PlayerCamera>();
-            PlayerWeapon = GetComponent<PlayerWeapon>();
-            PlayerMovement = GetComponent<PlayerMovement>();
-            PlayerState = GetComponent<PlayerState>();
+            Camera = GetComponent<PlayerCamera>();
+            Weapon = GetComponent<PlayerWeapon>();
+            WeaponInventory = GetComponent<PlayerWeaponInventory>();
+            Movement = GetComponent<PlayerMovement>();
+            State = GetComponent<PlayerState>();
 
             _armsBobbing = GetComponent<PlayerArmsBobbing>();
 
@@ -50,88 +41,110 @@ namespace LOK1game.Player
 
         private void Start()
         {
-            PlayerCamera.DesiredPosition = Vector3.up * _eyeHeight;
+            Camera.DesiredPosition = Vector3.up * _eyeHeight;
 
-            Hp = _maxHp;
+            Weapon.Equip(WeaponInventory.Weapons[0], PlayerHand.Side.Right);
         }
 
         private void Update()
         {
-            PlayerMovement.DirectionTransform.rotation = Quaternion.Euler(0f, PlayerCamera.GetCameraTransform().eulerAngles.y, 0f);
+            Movement.DirectionTransform.rotation = Quaternion.Euler(0f, Camera.GetCameraTransform().eulerAngles.y, 0f);
         }
 
         public override void OnInput(object sender)
         {
-            PlayerMovement.SetAxisInput(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+            Movement.SetAxisInput(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
 
             if (Input.GetButtonDown("Jump"))
             {
-                PlayerMovement.Jump();
+                Movement.Jump();
             }
-            if(Input.GetKeyDown(KeyCode.LeftControl) && PlayerState.OnGround)
+            if(Input.GetKeyDown(KeyCode.LeftControl) && State.OnGround)
             {
-                PlayerMovement.StartCrouch();
+                Movement.StartCrouch();
             }
-            if(Input.GetKeyUp(KeyCode.LeftControl) && PlayerState.IsCrouching)
+            if(Input.GetKeyUp(KeyCode.LeftControl) && State.IsCrouching)
             {
-                PlayerMovement.StopCrouch();
+                Movement.StopCrouch();
             }
+
+            if(Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                EquipWeapon(WeaponInventory.Weapons[0]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                EquipWeapon(WeaponInventory.Weapons[1]);
+            }
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                EquipWeapon(WeaponInventory.Utility);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                EquipWeapon(WeaponInventory.Abilities[0]);
+            }
+        }
+
+        private void EquipWeapon(WeaponData data)
+        {
+            Weapon.Equip(data, data.Hand);
         }
 
         private void OnJump()
         {
-            PlayerCamera.AddCameraOffset(Vector3.up * 0.15f);
-            PlayerCamera.TriggerRecoil(new Vector3(1f, 0f, 0f));
+            Camera.AddCameraOffset(Vector3.up * 0.15f);
+            Camera.TriggerRecoil(new Vector3(1f, 0f, 0f));
 
-            if(PlayerState.IsCrouching)
+            if(State.IsCrouching)
             {
-                PlayerMovement.StopCrouch();
+                Movement.StopCrouch();
             }
         }
 
         private void OnLand()
         {
-            var velocity = Vector3.ClampMagnitude(PlayerMovement.Rigidbody.velocity, 1f);
+            var velocity = Vector3.ClampMagnitude(Movement.Rigidbody.velocity, 1f);
 
-            PlayerCamera.AddCameraOffset(Vector3.down * 0.1f);
-            PlayerCamera.TriggerRecoil(new Vector3(-1.4f, 0f, 1.3f) * velocity.y);
+            Camera.AddCameraOffset(Vector3.down * 0.1f);
+            Camera.TriggerRecoil(new Vector3(-1.4f, 0f, 1.3f) * velocity.y);
         }
 
         private void OnStartCrouch()
         {
-            PlayerCamera.AddCameraOffset(Vector3.down * 0.1f);
-            PlayerCamera.DesiredPosition = new Vector3(0f, _crouchEyeHeight, 0f);
+            Camera.AddCameraOffset(Vector3.down * 0.1f);
+            Camera.DesiredPosition = new Vector3(0f, _crouchEyeHeight, 0f);
         }
 
         private void OnStartSlide()
         {
-            PlayerCamera.AddCameraOffset(-Vector3.forward * 0.1f);
-            PlayerCamera.Tilt = -3f;
+            Camera.AddCameraOffset(-Vector3.forward * 0.1f);
+            Camera.Tilt = -3f;
         }
 
         private void OnStopCrouch()
         {
-            PlayerCamera.AddCameraOffset(Vector3.up * 0.1f);
-            PlayerCamera.Tilt = 0f;
-            PlayerCamera.DesiredPosition = new Vector3(0f, _eyeHeight, 0f);
+            Camera.AddCameraOffset(Vector3.up * 0.1f);
+            Camera.Tilt = 0f;
+            Camera.DesiredPosition = new Vector3(0f, _eyeHeight, 0f);
         }
 
         protected override void SubscribeToEvents()
         {
-            PlayerMovement.OnJump += OnJump;
-            PlayerMovement.OnLand += OnLand;
-            PlayerMovement.OnStartCrouch += OnStartCrouch;
-            PlayerMovement.OnStopCrouch += OnStopCrouch;
-            PlayerMovement.OnStartSlide += OnStartSlide;
+            Movement.OnJump += OnJump;
+            Movement.OnLand += OnLand;
+            Movement.OnStartCrouch += OnStartCrouch;
+            Movement.OnStopCrouch += OnStopCrouch;
+            Movement.OnStartSlide += OnStartSlide;
         }
 
         protected override void UnsubscribeFromEvents()
         {
-            PlayerMovement.OnJump -= OnJump;
-            PlayerMovement.OnLand -= OnLand;
-            PlayerMovement.OnStartCrouch -= OnStartCrouch;
-            PlayerMovement.OnStopCrouch -= OnStopCrouch;
-            PlayerMovement.OnStartSlide -= OnStartSlide;
+            Movement.OnJump -= OnJump;
+            Movement.OnLand -= OnLand;
+            Movement.OnStartCrouch -= OnStartCrouch;
+            Movement.OnStopCrouch -= OnStopCrouch;
+            Movement.OnStartSlide -= OnStartSlide;
         }
 
         private void OnDisable()
@@ -149,29 +162,15 @@ namespace LOK1game.Player
             
         }
 
-        public void TakeDamage(Damage damage)
-        {
-            Hp -= damage.Value;
-
-            if(Hp <= 0)
-            {
-                Coroutines.StartRoutine(DeathRoutine());
-            }
-        }
-
         public IEnumerator DeathRoutine()
         {
-            _isDead = true;
-
-            var camera = Instantiate(_playerDeathCameraPrefab, transform.position, PlayerMovement.DirectionTransform.rotation);
+            var camera = Instantiate(_playerDeathCameraPrefab, transform.position, Movement.DirectionTransform.rotation);
 
             gameObject.SetActive(false);
 
             yield return new WaitForSeconds(_deathLength);
 
             gameObject.SetActive(true);
-
-            _isDead = false;
 
             Destroy(camera);
         }

@@ -6,7 +6,7 @@ namespace LOK1game.UI
 {
     //Note: v. 2021.3.1f1 unity animation controller isn't working
     //Setting up the animator controller is impossible
-    [RequireComponent(typeof(Animation))] // [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animator))] // [RequireComponent(typeof(Animator))]
     public class Hitmarker : MonoBehaviour
     {
         private const string TRIGGER_ON_HIT = "Hit";
@@ -14,11 +14,11 @@ namespace LOK1game.UI
 
         [SerializeField] private float _maxRotationAngleOnHit = 5f;
 
-        private Animation _animator; //Animator
+        private Animator _animator; //Animator
 
         private void Awake()
         {
-            _animator = GetComponent<Animation>(); //Animator
+            _animator = GetComponent<Animator>(); //Animator
         }
 
         private void Start()
@@ -45,8 +45,7 @@ namespace LOK1game.UI
             }
             else
             {
-                _animator.Stop();
-                _animator.Play();
+                _animator.SetTrigger(TRIGGER_ON_HIT);
             }
         }
     }

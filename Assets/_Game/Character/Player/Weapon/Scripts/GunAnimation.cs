@@ -16,8 +16,8 @@ namespace LOK1game.Weapon
             _gun = GetComponent<Gun>();
             _animator = GetComponent<Animator>();
 
-            _gun.OnShoot += OnShoot;
-            _gun.OnEquip += OnEquip;
+            _gun.OnWeaponAtack += OnShoot;
+            _gun.OnWeaponEquip += OnEquip;
         }
 
         private void OnShoot()
@@ -33,8 +33,8 @@ namespace LOK1game.Weapon
 
         private void OnDestroy()
         {
-            _gun.OnShoot -= OnShoot;
-            _gun.OnEquip -= OnEquip;
+            _gun.OnWeaponAtack -= OnShoot;
+            _gun.OnWeaponEquip -= OnEquip;
         }
     }
 }

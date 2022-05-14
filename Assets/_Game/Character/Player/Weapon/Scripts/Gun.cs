@@ -1,40 +1,22 @@
+using LOK1game.Player;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace LOK1game.Weapon
 {
-    public class Gun : BaseGun
+    public class Gun : BaseWeapon
     {
-        public event UnityAction OnShoot;
-        public event UnityAction OnEquip;
+        [SerializeField] private Transform _muzzleTransform;
 
-        [Space]
-        [SerializeField] private Vector3 _adsGunPositon;
-
-        private Vector3 _defaultGunPosition;
-        private Quaternion _defaultGunRotation;
-
-        private void Start()
+        protected override void Equip(Player.Player player)
         {
-            _defaultGunPosition = sightTransform.localPosition;
-            _defaultGunRotation = sightTransform.localRotation;
         }
 
-        public override void Equip(Player.Player player)
-        {
-            OnEquip?.Invoke();
-        }
-
-        public override void UpdateAds(Player.Player player)
-        {
-            
-        }
-
-        public override void Shoot(Player.Player player, PlayerHand hand)
+        protected override void Atack(Player.Player player, PlayerHand hand)
         {
             for (int i = 0; i < data.BulletsPerShoot; i++)
             {
-                var camera = player.PlayerCamera.GetRecoilCameraTransform();
+                var camera = player.Camera.GetRecoilCameraTransform();
 
                 var shootTransform = camera.transform;
                 var projectilePos = shootTransform.position;
@@ -42,7 +24,7 @@ namespace LOK1game.Weapon
 
                 if (data.ShootsFromMuzzle)
                 {
-                    shootTransform = muzzleTransform;
+                    shootTransform = _muzzleTransform;
                     projectilePos = shootTransform.position;
                     direction = shootTransform.forward;
                 }
@@ -58,10 +40,12 @@ namespace LOK1game.Weapon
 
                 projectile.Shoot(direction, data.StartBulletForce, damage);
 
-                player.PlayerCamera.AddCameraOffset(camera.forward * hand.CurrentGun.ShootCameraOffset.z);
-
-                OnShoot?.Invoke();
+                player.Camera.AddCameraOffset(camera.forward * data.ShootCameraOffset.z);
             }
+        }
+
+        protected override void Dequip(Player.Player player)
+        {
         }
     }
 }

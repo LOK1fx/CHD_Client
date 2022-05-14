@@ -20,25 +20,24 @@ namespace LOK1game
 
         public Side HandSide => _handSide;
 
-        public GunData CurrentGun { get; private set; }
-        public BaseGun CurrentGunObject { get; private set; }
+        public WeaponData CurrentWeaponData { get; private set; }
+        public GameObject CurrentWeaponObject { get; private set; }
+        public IWeapon CurrentWeapon { get; private set; }
 
-        public void SetGun(GunData data)
+        public void SetWeapon(WeaponStruct weapon)
         {
-            CurrentGun = data;
-        }
-
-        public void SetGunObject(BaseGun gun)
-        {
-            CurrentGunObject = gun;
+            CurrentWeaponData = weapon.Data;
+            CurrentWeaponObject = weapon.GameObject;
+            CurrentWeapon = weapon.Weapon;
         }
 
         public void ClearHand()
         {
-            Destroy(CurrentGunObject.gameObject);
+            Destroy(CurrentWeaponObject.gameObject);
 
-            CurrentGun = null;
-            CurrentGunObject = null;
+            CurrentWeaponData = null;
+            CurrentWeaponObject = null;
+            CurrentWeapon = null;
         }
     }
 }

@@ -18,7 +18,7 @@ MonoBehaviour:
   _startBulletForce: 80
   _bulletsPerShoot: 1
   _fireRate: 12
-  _shootDistance: 10
+  _shootDistance: 2.5
   _adsSpeed: 8
   _shootsFromMuzzle: 1
   BurstMode: 1
@@ -27,8 +27,8 @@ MonoBehaviour:
   _bloomXMultiplier: 1
   _bloomYMultiplier: 1
   _shootFovChange: 0
-  _shootCameraOffset: {x: 0, y: 0, z: 0.01}
-  _recoilCameraRotation: {x: 0.2, y: 0.1, z: 0.25}
+  _shootCameraOffset: {x: 0, y: 0, z: 0.05}
+  _recoilCameraRotation: {x: 0.2, y: 1, z: 1}
   _animatorController: {fileID: 22100000, guid: 912f2ffa20277594a9d4b775a4652aef,
     type: 2}
   _projectilePrefab: {fileID: 0}

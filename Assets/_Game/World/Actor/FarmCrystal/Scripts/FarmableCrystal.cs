@@ -7,6 +7,9 @@ namespace LOK1game.World
     {
         [SerializeField] private float _farmScoreMultiplier = 1f;
 
+        [Space]
+        [SerializeField] private GameObject _hitEffectPrefab;
+
         private Health _health;
 
         private void Awake()
@@ -28,6 +31,12 @@ namespace LOK1game.World
 
                 Debug.Log($"Crystal farm. Farm score - {Mathf.RoundToInt(damage.Value * _farmScoreMultiplier)}");
             }
+
+            var effect = Instantiate(_hitEffectPrefab, damage.HitPoint, Quaternion.identity);
+
+            effect.transform.LookAt(damage.HitPoint + damage.HitNormal);
+
+            Destroy(effect, 1f);
 
             if(_health.Hp <= 0)
             {

@@ -36,7 +36,7 @@ namespace LOK1game.Testers
         {
             _isDead = true;
 
-            var camera = Instantiate(_playerDeathCameraPrefab, transform.position, _player.PlayerMovement.DirectionTransform.rotation);
+            var camera = Instantiate(_playerDeathCameraPrefab, transform.position, _player.Movement.DirectionTransform.rotation);
 
             gameObject.SetActive(false);
 

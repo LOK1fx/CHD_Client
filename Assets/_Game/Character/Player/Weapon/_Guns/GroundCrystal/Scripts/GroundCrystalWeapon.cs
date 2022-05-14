@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LOK1game.Weapon
 {
-    public class GroundCrystalWeapon : BaseGun
+    public class GroundCrystalWeapon : BaseWeapon
     {
         [SerializeField] private float _activeTime = 3f;
         [SerializeField] private LayerMask _groundMask;
@@ -21,25 +21,28 @@ namespace LOK1game.Weapon
         {
             if(_currentCrystalPreview != null)
             {
-                var camera = _player.PlayerCamera.GetRecoilCameraTransform();
+                var camera = _player.Camera.GetRecoilCameraTransform();
+                var hasHit = Raycast(camera);
 
-                if (Raycast(camera))
+                if (hasHit)
                 {
                     _currentCrystalPreview.transform.position = _hit.point;
                 }
+
+                _currentCrystalPreview.SetActive(hasHit);
             }
         }
 
-        public override void Equip(Player.Player player)
+        protected override void Equip(Player.Player player)
         {
             _player = player;
 
             _currentCrystalPreview = Instantiate(_crystalPreviewPrefab);
         }
 
-        public override void Shoot(Player.Player player, PlayerHand hand)
+        protected override void Atack(Player.Player player, PlayerHand hand)
         {
-            var camera = _player.PlayerCamera.GetRecoilCameraTransform();
+            var camera = player.Camera.GetRecoilCameraTransform();
 
             if(Raycast(camera))
             {
@@ -47,10 +50,6 @@ namespace LOK1game.Weapon
 
                 crystal.Activate(_activeTime);
             }
-        }
-
-        public override void UpdateAds(Player.Player player)
-        {
         }
 
         private bool Raycast(Transform camera)
@@ -61,6 +60,14 @@ namespace LOK1game.Weapon
             }
 
             return false;
+        }
+
+        protected override void Dequip(Player.Player player)
+        {
+            if(_currentCrystalPreview != null)
+            {
+                Destroy(_currentCrystalPreview);
+            }
         }
     }
 }
