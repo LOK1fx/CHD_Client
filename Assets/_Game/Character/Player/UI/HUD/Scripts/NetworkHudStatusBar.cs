@@ -37,7 +37,11 @@ namespace LOK1game.New.Networking.UI
 
         private void SetHealthBarValue(int value)
         {
-            _playerHealthBar.localScale = new Vector3(value * 0.01f, 1f, 1f);
+            var scale = new Vector3(value * 0.01f, 1f, 1f);
+
+            scale.x = Mathf.Clamp01(scale.x);
+
+            _playerHealthBar.localScale = scale;
         }
     }
 }
