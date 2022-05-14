@@ -59,7 +59,6 @@ namespace LOK1game.Player
 
             var height = landPos.y - transform.position.y;
 
-            //MoveCamera.Instance.vaultOffset += transform.position - landPos;
             _player.Camera.GetCameraTransform().localPosition = (transform.position - landPos) + _player.Camera.DesiredPosition;
 
             transform.position = landPos;

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using LOK1game.Player;
 using UnityEngine;
 
 namespace LOK1game.Weapon
