@@ -16,6 +16,8 @@ namespace LOK1game.New.Networking
         PlayerHited,
         PlayerDeath,
         PlayerHealth,
+        PlayerLand,
+        PlayerLoadout,
     }
 
     public enum EClientToServerId : ushort
@@ -24,6 +26,7 @@ namespace LOK1game.New.Networking
         Input,
         Ping,
         HitPlayer,
+        SwitchWeapon,
     }
 
     public class NetworkManager : MonoBehaviour

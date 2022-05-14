@@ -31,12 +31,14 @@ namespace LOK1game.New.Networking
         private Interpolator _interpolator;
         private NetworkPlayerController _playerController;
         private Player.Player _player;
+        private NetworkWeaponInventory _weaponInventory;
 
 
         private void Awake()
         {
             _interpolator = GetComponent<Interpolator>();
             _playerController = GetComponent<NetworkPlayerController>();
+            _weaponInventory = GetComponent<NetworkWeaponInventory>();
         }
 
         private void Start()
@@ -189,6 +191,18 @@ namespace LOK1game.New.Networking
             var killer = message.GetUShort();
 
             List[id].Death(killer);
+        }
+
+        [MessageHandler((ushort)EServerToClientId.PlayerLoadout)]
+        private static void PlayerLoadout(Message message)
+        {
+            var id = message.GetUShort();
+            var listCount = message.GetInt();
+
+            for (int i = 0; i < listCount; i++)
+            {
+                List[id]._weaponInventory.AddWeapon((Weapon.EWeaponId)message.GetUShort());
+            }
         }
 
         #endregion

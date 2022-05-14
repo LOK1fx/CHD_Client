@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f8c4668cfb672429f4b4e07bbfc74f, type: 3}
   m_Name: PlaceholderRifle
   m_EditorClassIdentifier: 
+  _id: 1
   _useKey: 323
   _altUseKey: 324
   _damage: 20
@@ -29,7 +30,10 @@ MonoBehaviour:
   _shootFovChange: 0.4
   _shootCameraOffset: {x: 0, y: 0, z: -0.05}
   _recoilCameraRotation: {x: 3, y: 2, z: 0.05}
-  _animatorController: {fileID: 22100000, guid: 5b16ac4e7e38f114bbff53851756f3da, type: 2}
-  _projectilePrefab: {fileID: 5683537475582720638, guid: 847c12c2102d4674895c21308ea5bb65, type: 3}
-  _gunPrefab: {fileID: 4879845962668051348, guid: 87b54aff70e507f4580fbaa0ae3e8831, type: 3}
+  _animatorController: {fileID: 22100000, guid: 5b16ac4e7e38f114bbff53851756f3da,
+    type: 2}
+  _projectilePrefab: {fileID: 5683537475582720638, guid: 847c12c2102d4674895c21308ea5bb65,
+    type: 3}
+  _gunPrefab: {fileID: 4879845962668051348, guid: 87b54aff70e507f4580fbaa0ae3e8831,
+    type: 3}
   _shellPrefab: {fileID: 0}

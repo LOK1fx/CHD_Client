@@ -1,3 +1,4 @@
+using LOK1game.Weapon;
 using UnityEngine;
 using System;
 
@@ -31,6 +32,7 @@ public class App : MonoBehaviour
 
     [SerializeField] private GameModeManager _gameModeManager = new GameModeManager();
     [SerializeField] private LevelManager _levelManager = new LevelManager();
+    [SerializeField] private WeaponManager _weaponManager = new WeaponManager();
 
     private const string _appGameobjectName = "[App]";
 
@@ -56,11 +58,14 @@ public class App : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
+        InitializeComponents();
     }
 
-    private void Start()
+    private void InitializeComponents()
     {
         GameModeManager.SwitchGameMode(GameModeManager.CrystalCaptureGameMode);
         LevelManager.Initialize();
+        _weaponManager.Initialize();
     }
 }

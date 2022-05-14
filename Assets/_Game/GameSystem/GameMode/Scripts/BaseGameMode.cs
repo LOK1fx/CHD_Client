@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using LOK1game.Weapon;
 
 public enum EGameModeState
 {

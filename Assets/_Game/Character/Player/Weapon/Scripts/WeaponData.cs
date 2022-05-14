@@ -2,9 +2,13 @@ using UnityEngine;
 
 namespace LOK1game.Weapon
 {
-    [CreateAssetMenu(fileName = "new GunData", menuName = "GunData")]
+    [CreateAssetMenu(fileName = "new WeapomData", menuName = "WeaponData")]
     public class WeaponData : ScriptableObject
     {
+        public EWeaponId Id => _id;
+        [SerializeField] private EWeaponId _id = EWeaponId.None;
+
+        [Space]
         [SerializeField] private KeyCode _useKey = KeyCode.Mouse0;
         [SerializeField] private KeyCode _altUseKey = KeyCode.Mouse1;
 

@@ -56,3 +56,9 @@ MonoBehaviour:
     _levelsData:
     - {fileID: 11400000, guid: 035744442b6b5ef4689763ce31ca1acb, type: 2}
     - {fileID: 11400000, guid: fb6e494a7b8a49b41a8679eb4ee1f52e, type: 2}
+  _weaponManager:
+    _list:
+    - {fileID: 11400000, guid: 3241ede67b892f34bbb471ca880636a5, type: 2}
+    - {fileID: 11400000, guid: 7b1618072a2f3c742a3cfd23adea5c21, type: 2}
+    - {fileID: 11400000, guid: 120ac702fa9b37f439729f25cc25c353, type: 2}
+    - {fileID: 11400000, guid: 2b6469a9354f20a43a84892971dc7a48, type: 2}

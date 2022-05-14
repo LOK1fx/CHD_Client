@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f8c4668cfb672429f4b4e07bbfc74f, type: 3}
   m_Name: Revolver
   m_EditorClassIdentifier: 
+  _id: 3
   _useKey: 323
   _altUseKey: 324
   _damage: 30
