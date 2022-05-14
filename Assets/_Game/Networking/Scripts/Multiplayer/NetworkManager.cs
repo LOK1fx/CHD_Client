@@ -18,6 +18,7 @@ namespace LOK1game.New.Networking
         PlayerHealth,
         PlayerLand,
         PlayerLoadout,
+        PlayerSwitchWeapon,
     }
 
     public enum EClientToServerId : ushort

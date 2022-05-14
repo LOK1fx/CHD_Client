@@ -7,14 +7,19 @@ namespace LOK1game.Player
     [RequireComponent(typeof(Player))]
     public class PlayerWeapon : Actor, IPawn
     {
+        #region Events
+
         public event Action<WeaponData> OnEquip;
         public event Action<WeaponData> OnDequip;
         public event Action OnKick;
+
+        #endregion
 
         [SerializeField] private PlayerHand[] _playerHands = new PlayerHand[2];
         public PlayerHand[] PlayerHands => _playerHands;
 
         public bool HasGun { get; private set; }
+        public int CurrentSlotIndex { get; private set; }
 
         [SerializeField] private Animator _armsAnimator;
 
@@ -131,6 +136,8 @@ namespace LOK1game.Player
             weapon.Weapon.OnEquip(_player);
 
             HasGun = true;
+
+            CurrentSlotIndex = (int)weapon.Data.Type - 1;
 
             _armsAnimator.runtimeAnimatorController = gunData.AnimatorController;
             _armsAnimator.Play("Draw", 0, 0);

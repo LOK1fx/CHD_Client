@@ -6,8 +6,8 @@ namespace LOK1game.Weapon
     {
         Primary = 1,
         Secondary,
-        Ability,
         Utility,
+        Ability,
     }
 
     [CreateAssetMenu(fileName = "new WeapomData", menuName = "WeaponData")]

@@ -205,6 +205,15 @@ namespace LOK1game.New.Networking
             }
         }
 
+        [MessageHandler((ushort)EServerToClientId.PlayerSwitchWeapon)]
+        private static void PlayerSwitchWeapon(Message message)
+        {
+            var id = message.GetUShort();
+            var slotIndex = message.GetInt();
+
+            List[id]._weaponInventory.SetSlot(slotIndex);
+        }
+
         #endregion
     }
 }

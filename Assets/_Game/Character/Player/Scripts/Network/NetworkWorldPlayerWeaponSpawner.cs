@@ -1,16 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using LOK1game.Weapon;
 
 namespace LOK1game.New.Networking
 {
+    [RequireComponent(typeof(NetworkWeaponInventory))]
     public class NetworkWorldPlayerWeaponSpawner : MonoBehaviour
     {
+        [SerializeField] private LayerMask _weaponLayer;
+
+        [Space]
         [SerializeField] private PlayerHand[] _hands = new PlayerHand[2];
 
-        public void SetWeapon(EWeaponId id)
+        private NetworkWeaponInventory _inventory;
+
+        private void Awake()
         {
+            _inventory = GetComponent<NetworkWeaponInventory>();
+        }
+
+        private void Start()
+        {
+            _inventory.OnWeaponSwitch += SetWeapon;
+        }
+
+        public void SetWeapon(int index)
+        {
+            var id = _inventory.Weapons[index];
             var weapon = WeaponLibrary.GetWeaponData(id);
 
             EquipWeapon(weapon, weapon.Hand);
@@ -32,6 +47,11 @@ namespace LOK1game.New.Networking
                 GameObject = weaponObject,
                 Weapon = null,
             };
+
+            foreach (var transform in weapon.GameObject.GetComponentsInChildren<Transform>())
+            {
+                transform.gameObject.layer = _weaponLayer.value;
+            }
 
             hand.SetWeapon(weapon);
         }
