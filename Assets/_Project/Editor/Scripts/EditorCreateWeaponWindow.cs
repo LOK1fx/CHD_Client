@@ -11,21 +11,16 @@ namespace LOK1game.Editor
         GroundCrystal,
     }
 
-    public class EditorCreateWeaponWindow : EditorWindow
+    public class EditorCreateWeaponWindow : BaseLOK1gameEditorWindow
     {
-        #region Paths
-
-        private const string DATA_PATH = "Assets/_Game/Character/Player/Weapon/_Data";
-        private const string PREFAB_PATH = "Assets/_Game/Character/Player/Weapon/_Guns";
-
-        #endregion
-
         private string _weaponName = "new Weapon";
+        private Sprite _weaponIcon;
         private GameObject _weaponModel;
         private EWeaponType _weaponType = EWeaponType.Primary;
         private EWeaponBaseScript _weaponBaseScript;
+        private bool _registerWeaponToWeaponManager;
 
-        [MenuItem("LOK1game Tools/Create new weapon")]
+        [MenuItem(MENU_ITEM_NAME+"/Create new weapon")]
         public static void ShowWindow()
         {
             GetWindow<EditorCreateWeaponWindow>("Create weapon");
@@ -34,9 +29,11 @@ namespace LOK1game.Editor
         private void OnGUI()
         {
             _weaponName = EditorGUILayout.TextField("Weapon name: ", _weaponName);
+            _weaponIcon = (Sprite)EditorGUILayout.ObjectField("Weapon icon: ", _weaponIcon, typeof(Sprite));
             _weaponModel = (GameObject)EditorGUILayout.ObjectField("Weapon model: ", _weaponModel, typeof(GameObject));
             _weaponType = (EWeaponType)EditorGUILayout.EnumPopup("Weapon type: ", _weaponType);
             _weaponBaseScript = (EWeaponBaseScript)EditorGUILayout.EnumPopup("Weapon base script: ", _weaponBaseScript);
+            _registerWeaponToWeaponManager = EditorGUILayout.Toggle("Register weapon to app weapon manager: ", _registerWeaponToWeaponManager);
 
             if(GUILayout.Button("Create weapon"))
             {
@@ -47,15 +44,24 @@ namespace LOK1game.Editor
                 var data = CreateInstance<WeaponData>();
                 data.name = _weaponName;
 
-                weapon.SetData(data);
-                data.SetData(_weaponType, weapon);
+                weapon.Editor_SetData(data);
+                data.Editor_SetData(_weaponType, weapon);
 
-                AssetDatabase.CreateAsset(data, GetCurrentPath(DATA_PATH, false));
-                AssetDatabase.CreateFolder(PREFAB_PATH, _weaponName);
-                PrefabUtility.SaveAsPrefabAsset(parent, GetCurrentPath($"{PREFAB_PATH}/{_weaponName}", true));
+                if(_registerWeaponToWeaponManager)
+                {
+                    GetApp().WeaponManager.Editor_AddWeapon(data);
+                    WeaponLibrary.Editor_AddWeapon(data);
+                }
+
+                AssetDatabase.CreateAsset(data, GetCurrentPath(WEAPON_DATA_PATH, false));
+                AssetDatabase.CreateFolder(WEAPON_PREFAB_PATH, _weaponName);
+                PrefabUtility.SaveAsPrefabAsset(parent, GetCurrentPath($"{WEAPON_PREFAB_PATH}/{_weaponName}", true));
 
                 DestroyImmediate(parent);
             }
+
+            //GUILayout.Box(GetLogoTexture());
+            GUI.DrawTexture(new Rect(0, 135, 512, 512), GetLogoTexture(), ScaleMode.ScaleAndCrop);
         }
 
         private string GetCurrentPath(string path, bool prefab)

@@ -88,7 +88,7 @@ namespace LOK1game.Weapon
 
 #if UNITY_EDITOR
 
-        public void SetData(EWeaponType type, BaseWeapon prefab)
+        public void Editor_SetData(EWeaponType type, BaseWeapon prefab)
         {
             _gunPrefab = prefab;
             _type = type;

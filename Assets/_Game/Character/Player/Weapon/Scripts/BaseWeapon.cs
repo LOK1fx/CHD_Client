@@ -92,7 +92,7 @@ namespace LOK1game.Weapon
 
 #if UNITY_EDITOR
 
-        public void SetData(WeaponData weaponData)
+        public void Editor_SetData(WeaponData weaponData)
         {
             data = weaponData;
         }

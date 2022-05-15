@@ -46,5 +46,14 @@ namespace LOK1game.Weapon
 
             return _weapons[id];
         }
+
+#if UNITY_EDITOR
+
+        public static void Editor_AddWeapon(WeaponData data)
+        {
+            _weapons.Add(data.Id, data);
+        }
+
+#endif
     }
 }

@@ -29,6 +29,7 @@ public class App : MonoBehaviour
 
     public GameModeManager GameModeManager => _gameModeManager;
     public LevelManager LevelManager => _levelManager;
+    public WeaponManager WeaponManager => _weaponManager;
 
     [SerializeField] private GameModeManager _gameModeManager = new GameModeManager();
     [SerializeField] private LevelManager _levelManager = new LevelManager();

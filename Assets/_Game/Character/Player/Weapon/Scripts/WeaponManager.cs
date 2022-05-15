@@ -16,5 +16,14 @@ namespace LOK1game.Weapon
                 WeaponLibrary.Intialize(_list.ToArray());
             }
         }
+
+#if UNITY_EDITOR
+
+        public void Editor_AddWeapon(WeaponData data)
+        {
+            _list.Add(data);
+        }
+
+#endif
     }
 }
