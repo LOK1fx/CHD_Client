@@ -88,6 +88,12 @@ namespace LOK1game.Weapon
 
 #if UNITY_EDITOR
 
+        [ContextMenu("FindAndSetPrefab")]
+        public void Editor_FindAndSetPrefab()
+        {
+            _gunPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>($"{Constants.Editor.WEAPON_PREFAB_PATH}/{name}/Prefabs/{name}.prefab").GetComponent<BaseWeapon>();
+        }
+
         public void Editor_SetData(EWeaponType type, BaseWeapon prefab)
         {
             _gunPrefab = prefab;

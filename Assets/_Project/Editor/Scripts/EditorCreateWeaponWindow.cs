@@ -53,14 +53,16 @@ namespace LOK1game.Editor
                     WeaponLibrary.Editor_AddWeapon(data);
                 }
 
-                AssetDatabase.CreateAsset(data, GetCurrentPath(WEAPON_DATA_PATH, false));
-                AssetDatabase.CreateFolder(WEAPON_PREFAB_PATH, _weaponName);
-                PrefabUtility.SaveAsPrefabAsset(parent, GetCurrentPath($"{WEAPON_PREFAB_PATH}/{_weaponName}", true));
+                AssetDatabase.CreateAsset(data, GetCurrentPath(Constants.Editor.WEAPON_DATA_PATH, false));
+                AssetDatabase.CreateFolder(Constants.Editor.WEAPON_PREFAB_PATH, _weaponName);
+                AssetDatabase.CreateFolder($"{Constants.Editor.WEAPON_PREFAB_PATH}/{_weaponName}", "Prefabs");
+                PrefabUtility.SaveAsPrefabAsset(parent, GetCurrentPath($"{Constants.Editor.WEAPON_PREFAB_PATH}/{_weaponName}/Prefabs", true));
 
                 DestroyImmediate(parent);
+
+                data.Editor_FindAndSetPrefab();
             }
 
-            //GUILayout.Box(GetLogoTexture());
             GUI.DrawTexture(new Rect(0, 135, 512, 512), GetLogoTexture(), ScaleMode.ScaleAndCrop);
         }
 
