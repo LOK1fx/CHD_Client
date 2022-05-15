@@ -28,6 +28,8 @@ namespace LOK1game.Editor
 
         private void OnGUI()
         {
+            GUILayout.Space(20f);
+
             _weaponName = EditorGUILayout.TextField("Weapon name: ", _weaponName);
             _weaponIcon = (Sprite)EditorGUILayout.ObjectField("Weapon icon: ", _weaponIcon, typeof(Sprite));
             _weaponModel = (GameObject)EditorGUILayout.ObjectField("Weapon model: ", _weaponModel, typeof(GameObject));
@@ -63,7 +65,7 @@ namespace LOK1game.Editor
                 data.Editor_FindAndSetPrefab();
             }
 
-            GUI.DrawTexture(new Rect(0, 135, 512, 512), GetLogoTexture(), ScaleMode.ScaleAndCrop);
+            DrawLogo(170f);
         }
 
         private string GetCurrentPath(string path, bool prefab)
