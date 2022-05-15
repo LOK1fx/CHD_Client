@@ -19,7 +19,7 @@ MonoBehaviour:
   _damage: 30
   _startBulletForce: 650
   _bulletsPerShoot: 1
-  _fireRate: 0.1
+  _fireRate: 4
   _shootDistance: 1000
   _adsSpeed: 1
   _shootsFromMuzzle: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   _bloomXMultiplier: 1
   _bloomYMultiplier: 1
   _shootFovChange: 0.4
-  _shootCameraOffset: {x: 0, y: 0, z: -5}
+  _shootCameraOffset: {x: 0, y: 0, z: -0.6}
   _recoilCameraRotation: {x: 15, y: 7, z: 0}
   _animatorController: {fileID: 22100000, guid: 21f36b97b3da3254c8d94dbe12f7b66a,
     type: 2}
