@@ -34,9 +34,11 @@ namespace LOK1game.Editor
                 {
                     var dataPath = Constants.Editor.WEAPON_DATA_PATH + "/" + _weaponName + ".asset";
                     var prefabData = Constants.Editor.WEAPON_PREFAB_PATH + "/" + _weaponName;
+                    var animData = $"Assets/_Game/Character/Player/Arms/Animations/{_weaponName}";
 
                     AssetDatabase.DeleteAsset(dataPath);
                     AssetDatabase.DeleteAsset(prefabData);
+                    AssetDatabase.DeleteAsset(animData);
                 }
             }
 

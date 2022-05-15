@@ -47,7 +47,6 @@ namespace LOK1game.Editor
                 data.name = _weaponName;
 
                 weapon.Editor_SetData(data);
-                data.Editor_SetData(_weaponType, weapon);
 
                 if(_registerWeaponToWeaponManager)
                 {
@@ -70,6 +69,7 @@ namespace LOK1game.Editor
                 };
                 AssetDatabase.CreateAsset(controller, $"{animsPath}/{_weaponName}/Arms{_weaponName}.overrideController");
 
+                data.Editor_SetData(_weaponType, weapon, controller);
 
                 DestroyImmediate(parent);
 

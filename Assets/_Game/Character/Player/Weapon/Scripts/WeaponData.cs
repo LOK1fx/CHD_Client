@@ -94,10 +94,11 @@ namespace LOK1game.Weapon
             _gunPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>($"{Constants.Editor.WEAPON_PREFAB_PATH}/{name}/Prefabs/{name}.prefab").GetComponent<BaseWeapon>();
         }
 
-        public void Editor_SetData(EWeaponType type, BaseWeapon prefab)
+        public void Editor_SetData(EWeaponType type, BaseWeapon prefab, AnimatorOverrideController controller)
         {
             _gunPrefab = prefab;
             _type = type;
+            _animatorController = controller;
         }
 
 #endif
