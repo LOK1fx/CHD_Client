@@ -60,6 +60,17 @@ namespace LOK1game.Editor
                 AssetDatabase.CreateFolder($"{Constants.Editor.WEAPON_PREFAB_PATH}/{_weaponName}", "Prefabs");
                 PrefabUtility.SaveAsPrefabAsset(parent, GetCurrentPath($"{Constants.Editor.WEAPON_PREFAB_PATH}/{_weaponName}/Prefabs", true));
 
+                //Additional folders
+                var animsPath = "Assets/_Game/Character/Player/Arms/Animations";
+                AssetDatabase.CreateFolder(animsPath, _weaponName);
+
+                var controller = new AnimatorOverrideController
+                {
+                    runtimeAnimatorController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/_Game/Character/Player/Arms/PlayerArmsAnimController.controller")
+                };
+                AssetDatabase.CreateAsset(controller, $"{animsPath}/{_weaponName}/Arms{_weaponName}.overrideController");
+
+
                 DestroyImmediate(parent);
 
                 data.Editor_FindAndSetPrefab();
