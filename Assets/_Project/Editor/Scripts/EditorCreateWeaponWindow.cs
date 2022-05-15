@@ -20,7 +20,7 @@ namespace LOK1game.Editor
 
         #endregion
 
-        private string _weaponName;
+        private string _weaponName = "new Weapon";
         private GameObject _weaponModel;
         private EWeaponType _weaponType = EWeaponType.Primary;
         private EWeaponBaseScript _weaponBaseScript;
@@ -46,13 +46,14 @@ namespace LOK1game.Editor
 
                 var data = CreateInstance<WeaponData>();
                 data.name = _weaponName;
+
+                weapon.SetData(data);
                 data.SetData(_weaponType, weapon);
 
                 AssetDatabase.CreateAsset(data, GetCurrentPath(DATA_PATH, false));
                 AssetDatabase.CreateFolder(PREFAB_PATH, _weaponName);
                 PrefabUtility.SaveAsPrefabAsset(parent, GetCurrentPath($"{PREFAB_PATH}/{_weaponName}", true));
 
-                weapon.SetData(data);
                 DestroyImmediate(parent);
             }
         }
