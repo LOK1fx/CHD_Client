@@ -89,5 +89,14 @@ namespace LOK1game.Weapon
         {
             return data;
         }
+
+#if UNITY_EDITOR
+
+        public void SetData(WeaponData weaponData)
+        {
+            data = weaponData;
+        }
+
+#endif
     }
 }

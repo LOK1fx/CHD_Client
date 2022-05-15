@@ -79,7 +79,7 @@ namespace LOK1game.Player
             {
                 var gun = _playerHands[index].CurrentWeaponData;
 
-                if(gun.BurstMode == GunBurstMode.Semi)
+                if(gun.BurstMode == EGunBurstMode.Semi)
                 {
                     if (Input.GetKeyDown(gun.UseKey))
                     {

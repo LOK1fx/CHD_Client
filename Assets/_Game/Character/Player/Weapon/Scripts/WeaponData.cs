@@ -10,6 +10,13 @@ namespace LOK1game.Weapon
         Ability,
     }
 
+    public enum EGunBurstMode
+    {
+        Semi,
+        Auto,
+        Burst
+    }
+
     [CreateAssetMenu(fileName = "new WeapomData", menuName = "WeaponData")]
     public class WeaponData : ScriptableObject
     {
@@ -43,7 +50,7 @@ namespace LOK1game.Weapon
         public float AdsSpeed => _adsSpeed;
         public bool ShootsFromMuzzle => _shootsFromMuzzle;
 
-        public GunBurstMode BurstMode = GunBurstMode.Semi;
+        public EGunBurstMode BurstMode = EGunBurstMode.Semi;
         public PlayerHand.Side Hand = PlayerHand.Side.Right;
 
         [Space]
@@ -78,12 +85,15 @@ namespace LOK1game.Weapon
         public Projectile ProjectilePrefab => _projectilePrefab;
         public BaseWeapon GunPrefab => _gunPrefab;
         public GameObject ShellPrefab => _shellPrefab;
-    }
 
-    public enum GunBurstMode
-    {
-        Semi,
-        Auto,
-        Burst
+#if UNITY_EDITOR
+
+        public void SetData(EWeaponType type, BaseWeapon prefab)
+        {
+            _gunPrefab = prefab;
+            _type = type;
+        }
+
+#endif
     }
 }
