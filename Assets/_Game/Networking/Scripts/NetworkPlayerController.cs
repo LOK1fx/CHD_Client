@@ -109,11 +109,11 @@ namespace LOK1game.New.Networking
         {
             if(local)
             {
-                
+                _movement.Land();
             }
             else
             {
-
+                //Do effects or something else
             }
         }
 
