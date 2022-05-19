@@ -24,10 +24,6 @@ namespace LOK1game.World
             if(damage.Sender is Player.Player)
             {
                 _health.ReduceHealth(damage.Value);
-                
-                var gameMode = App.Instance.GameModeManager.CurrentGameMode as CrystalCaptureGameMode;
-
-                gameMode.AddProgress(damage.Value);
 
                 Debug.Log($"Crystal farm. Farm score - {Mathf.RoundToInt(damage.Value * _farmScoreMultiplier)}");
             }

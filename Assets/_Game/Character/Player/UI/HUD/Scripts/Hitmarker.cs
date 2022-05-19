@@ -48,5 +48,10 @@ namespace LOK1game.UI
                 _animator.SetTrigger(TRIGGER_ON_HIT);
             }
         }
+
+        private void OnDestroy()
+        {
+            EventManager.RemoveListener<OnPlayerHitCHD>(OnHit);
+        }
     }
 }

@@ -2,52 +2,56 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[Serializable]
-public class CrystalCaptureGameMode : BaseGameMode
+namespace LOK1game.Game
 {
-    #region Events
-
-    public event Action<int> OnProgressChanged;
-
-    #endregion
-
-    public int ProgressGoal { get; private set; }
-    public int CurrentProgress { get; private set; }
-
-    public CrystalCaptureGameMode(int progressGoal)
+    [Serializable]
+    public class CrystalCaptureGameMode : BaseGameMode
     {
-        ProgressGoal = progressGoal;
+        #region Events
+
+        public event Action<int> OnProgressChanged;
+
+        #endregion
+
+        public int ProgressGoal { get; private set; }
+        public int CurrentProgress { get; private set; }
+
+        public CrystalCaptureGameMode(EGameModeId id)
+        {
+            _id = id;
+        }
+
+        public void AddProgress(int value)
+        {
+            CurrentProgress += value;
+
+            OnProgressChanged?.Invoke(value);
+        }
+
+        public override IEnumerator OnStart()
+        {
+            State = EGameModeState.Starting;
+
+            var camera = GameObject.Instantiate(CameraPrefab);
+            var ui = GameObject.Instantiate(UiPrefab);
+
+
+            RegisterGameModeObject(camera);
+            RegisterGameModeObject(ui);
+
+            State = EGameModeState.Started;
+
+            yield return null;
+        }
+
+        public override IEnumerator OnEnd()
+        {
+            State = EGameModeState.Ending;
+
+            yield return DestroyAllGameModeObjects();
+
+            State = EGameModeState.Ended;
+        }
     }
 
-    public void AddProgress(int value)
-    {
-        CurrentProgress += value;
-
-        OnProgressChanged?.Invoke(value);
-    }
-
-    public override IEnumerator OnStart()
-    {
-        State = EGameModeState.Starting;
-
-        var camera = GameObject.Instantiate(CameraPrefab);
-        var ui = GameObject.Instantiate(UiPrefab);
-
-
-        RegisterGameModeObject(camera);
-        RegisterGameModeObject(ui);
-
-        yield return null;
-
-        State = EGameModeState.Started;
-    }
-
-    public override IEnumerator OnEnd()
-    {
-        State = EGameModeState.Ending;
-
-        yield return DestroyAllGameModeObjects();
-
-        State = EGameModeState.Ended;
-    }
 }

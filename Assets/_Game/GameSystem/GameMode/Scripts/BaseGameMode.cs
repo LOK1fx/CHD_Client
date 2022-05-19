@@ -2,54 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using LOK1game.Weapon;
 
-public enum EGameModeState
+public enum EGameModeState : ushort
 {
+    Starting = 1,
     Started,
-    Starting,
     Ending,
-    Ended
+    Ended,
 }
 
-[Serializable]
-public abstract class BaseGameMode : IGameMode
+public enum EGameModeId : ushort
 {
-    public EGameModeState State { get; protected set; }
-    public List<GameObject> GameModeSpawnedObjects { get; private set; }
+    Default,
+    CrystalCapture,
+    PVE,
+}
+namespace LOK1game.Game
+{
 
-    private bool _isGameModeObjectListInitialized;
-
-    public GameObject UiPrefab;
-    public GameObject CameraPrefab;
-    public GameObject PlayerPrefab;
-    public GameObject PlayerController;
-
-    public abstract IEnumerator OnEnd();
-    public abstract IEnumerator OnStart();
-
-    protected void RegisterGameModeObject(GameObject gameObject)
+    [Serializable]
+    public abstract class BaseGameMode : IGameMode
     {
-        if(!_isGameModeObjectListInitialized)
-        {
-            GameModeSpawnedObjects = new List<GameObject>();
+        public EGameModeState State { get; protected set; }
+        public List<GameObject> GameModeSpawnedObjects { get; private set; }
 
-            _isGameModeObjectListInitialized = true;
+        private bool _isGameModeObjectListInitialized;
+        protected EGameModeId _id;
+
+        public GameObject UiPrefab;
+        public GameObject CameraPrefab;
+        public GameObject PlayerPrefab;
+        public GameObject PlayerController;
+
+        public EGameModeId Id => _id;
+        public abstract IEnumerator OnEnd();
+        public abstract IEnumerator OnStart();
+
+        protected void RegisterGameModeObject(GameObject gameObject)
+        {
+            if (!_isGameModeObjectListInitialized)
+            {
+                GameModeSpawnedObjects = new List<GameObject>();
+
+                _isGameModeObjectListInitialized = true;
+            }
+
+            GameModeSpawnedObjects.Add(gameObject);
+
+            GameObject.DontDestroyOnLoad(gameObject);
         }
 
-        GameModeSpawnedObjects.Add(gameObject);
-
-        GameObject.DontDestroyOnLoad(gameObject);
-    }
-
-    protected IEnumerator DestroyAllGameModeObjects()
-    {
-        foreach (var obj in GameModeSpawnedObjects)
+        protected IEnumerator DestroyAllGameModeObjects()
         {
-            GameModeSpawnedObjects.Remove(obj);
-            GameObject.Destroy(obj);
+            foreach (var obj in GameModeSpawnedObjects)
+            {
+                GameObject.Destroy(obj);
 
-            yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }

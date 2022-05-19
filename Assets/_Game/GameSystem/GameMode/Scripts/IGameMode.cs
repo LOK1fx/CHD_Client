@@ -1,7 +1,11 @@
 using System.Collections;
 
-public interface IGameMode
+namespace LOK1game.Game
 {
-    IEnumerator OnStart();
-    IEnumerator OnEnd();
+    public interface IGameMode
+    {
+        EGameModeId Id { get; }
+        IEnumerator OnStart();
+        IEnumerator OnEnd();
+    }
 }

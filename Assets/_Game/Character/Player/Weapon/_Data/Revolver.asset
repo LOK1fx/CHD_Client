@@ -17,7 +17,7 @@ MonoBehaviour:
   _useKey: 323
   _altUseKey: 324
   _damage: 30
-  _startBulletForce: 650
+  _startBulletForce: 750
   _bulletsPerShoot: 1
   _fireRate: 4
   _shootDistance: 1000

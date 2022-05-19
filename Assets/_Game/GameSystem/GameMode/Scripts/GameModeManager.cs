@@ -1,43 +1,77 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using LOK1game.Tools;
 
-[System.Serializable]
-public class GameModeManager
+namespace LOK1game.Game
 {
-    public CrystalCaptureGameMode CrystalCaptureGameMode => _gameMode;
-
-    [SerializeField] private CrystalCaptureGameMode _gameMode;
-
-    public IGameMode CurrentGameMode { get; private set; }
-
-    private bool _isSwithing;
-
-    public void SwitchGameMode(IGameMode gameMode)
+    [System.Serializable]
+    public struct GameModeContainer
     {
-        Coroutines.StartRoutine(SwitchMode(gameMode));
+        public EGameModeId Id;
+        public IGameMode GameMode;
+
+        public GameModeContainer(EGameModeId id, IGameMode gameMode)
+        {
+            Id = id;
+            GameMode = gameMode;
+        }
     }
 
-    private IEnumerator SwitchMode(IGameMode gameMode)
+    [System.Serializable]
+    public sealed class GameModeManager
     {
-        yield return new WaitUntil(() => !_isSwithing);
+        public IGameMode CurrentGameMode { get; private set; }
 
-        if(CurrentGameMode == gameMode)
+        private readonly List<GameModeContainer> _gameModes = new List<GameModeContainer>();
+        private bool _isSwithing;
+
+        public void IntializeGameMode(EGameModeId id, IGameMode mode)
         {
-            yield break;
+            _gameModes.Add(new GameModeContainer(id, mode));
         }
 
-        _isSwithing = true;
-
-        if(CurrentGameMode != null)
+        public void SetGameMode(EGameModeId id)
         {
-            yield return CurrentGameMode.OnEnd();
+            var gamemode = GetGameMode(id);
+
+            Coroutines.StartRoutine(SwitchGameModeRoutine(gamemode));
         }
 
-        CurrentGameMode = gameMode;
+        private IEnumerator SwitchGameModeRoutine(IGameMode gameMode)
+        {
+            yield return new WaitUntil(() => !_isSwithing);
 
-        yield return CurrentGameMode.OnStart();
+            if (CurrentGameMode == gameMode)
+            {
+                yield break;
+            }
 
-        _isSwithing = false;
+            _isSwithing = true;
+
+            if (CurrentGameMode != null)
+            {
+                yield return CurrentGameMode.OnEnd();
+            }
+
+            CurrentGameMode = gameMode;
+
+            yield return CurrentGameMode.OnStart();
+
+            _isSwithing = false;
+        }
+
+        private IGameMode GetGameMode(EGameModeId id)
+        {
+            foreach (var gamemode in _gameModes)
+            {
+                if (gamemode.Id == id)
+                {
+                    return gamemode.GameMode;
+                }
+            }
+
+            throw new System.ArgumentException();
+        }
     }
 }

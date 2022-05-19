@@ -214,6 +214,17 @@ namespace LOK1game.New.Networking
             List[id]._weaponInventory.SetSlot(slotIndex);
         }
 
+        [MessageHandler((ushort)EServerToClientId.PlayerLand)]
+        private static void PlayerLand(Message message)
+        {
+            var id = message.GetUShort();
+            var velocity = message.GetVector3();
+
+            var player = List[id];
+
+            player._playerController.OnLand(velocity, player.IsLocal);
+        }
+
         #endregion
     }
 }

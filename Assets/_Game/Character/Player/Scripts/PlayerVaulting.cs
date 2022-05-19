@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace LOK1game.Player
@@ -56,7 +57,6 @@ namespace LOK1game.Player
             }
 
             var landPos = hit.point;
-
             var height = landPos.y - transform.position.y;
 
             _player.Camera.GetCameraTransform().localPosition = (transform.position - landPos) + _player.Camera.DesiredPosition;

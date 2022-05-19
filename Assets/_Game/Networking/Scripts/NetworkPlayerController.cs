@@ -105,6 +105,18 @@ namespace LOK1game.New.Networking
             }
         }
 
+        public void OnLand(Vector3 velocity, bool local)
+        {
+            if(local)
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+
         private void HandleServerReconciliation()
         {
             _lastProcessedState = _latestServerState;

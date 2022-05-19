@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: PlaceholderAr
   m_EditorClassIdentifier: 
   _id: 2
+  _type: 1
   _useKey: 323
   _altUseKey: 324
   _damage: 12
-  _startBulletForce: 750
+  _startBulletForce: 450
   _bulletsPerShoot: 1
   _fireRate: 12
   _shootDistance: 1000

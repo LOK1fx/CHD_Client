@@ -1,6 +1,7 @@
 using LOK1game.Weapon;
 using UnityEngine;
 using System;
+using LOK1game.Game;
 
 public class App : MonoBehaviour
 {
@@ -31,7 +32,14 @@ public class App : MonoBehaviour
     public LevelManager LevelManager => _levelManager;
     public WeaponManager WeaponManager => _weaponManager;
 
-    [SerializeField] private GameModeManager _gameModeManager = new GameModeManager();
+    [Header("GameModes")]
+    [SerializeField] private GameModeManager _gameModeManager;
+    [SerializeField] private EGameModeId _standardGameModeId;
+    [SerializeField] private DefaultGameMode _defaultGameMode = new DefaultGameMode(EGameModeId.Default);
+    [SerializeField] private CrystalCaptureGameMode _crystalCaptureGameMode = new CrystalCaptureGameMode(EGameModeId.CrystalCapture);
+    [SerializeField] private PVEDefendGameMode _pveDefendGameMode = new PVEDefendGameMode(EGameModeId.PVE);
+    [Space]
+    [Space]
     [SerializeField] private LevelManager _levelManager = new LevelManager();
     [SerializeField] private WeaponManager _weaponManager = new WeaponManager();
 
@@ -65,8 +73,13 @@ public class App : MonoBehaviour
 
     private void InitializeComponents()
     {
-        GameModeManager.SwitchGameMode(GameModeManager.CrystalCaptureGameMode);
         LevelManager.Initialize();
         _weaponManager.Initialize();
+        _gameModeManager = new GameModeManager();
+
+        _gameModeManager.IntializeGameMode(EGameModeId.Default, _defaultGameMode);
+        _gameModeManager.IntializeGameMode(EGameModeId.CrystalCapture, _crystalCaptureGameMode);
+        _gameModeManager.IntializeGameMode(EGameModeId.PVE, _pveDefendGameMode);
+        _gameModeManager.SetGameMode(_standardGameModeId);
     }
 }

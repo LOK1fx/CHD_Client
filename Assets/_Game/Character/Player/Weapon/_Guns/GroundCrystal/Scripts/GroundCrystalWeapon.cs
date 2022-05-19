@@ -41,6 +41,8 @@ namespace LOK1game.Weapon
         {
             var camera = player.Camera.GetRecoilCameraTransform();
 
+            player.Camera.AddCameraOffset(camera.forward * data.ShootCameraOffset.z);
+
             if(Raycast(camera))
             {
                 var crystal = Instantiate(_crystalPrefab, _hit.point, Quaternion.identity);

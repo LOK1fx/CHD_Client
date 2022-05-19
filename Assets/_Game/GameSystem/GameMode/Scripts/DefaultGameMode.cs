@@ -2,34 +2,39 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-[Serializable]
-public class DefaultGameMode : BaseGameMode
+namespace LOK1game.Game
 {
-    public override IEnumerator OnStart()
+    [Serializable]
+    public sealed class DefaultGameMode : BaseGameMode
     {
-        Debug.Log("GameMode started");
+        public DefaultGameMode(EGameModeId id)
+        {
+            _id = id;
+        }
 
-        var camera = GameObject.Instantiate(Resources.Load("PlayerCamera")) as GameObject;
+        public override IEnumerator OnStart()
+        {
+            State = EGameModeState.Starting;
 
-        RegisterGameModeObject(camera);
+            var camera = GameObject.Instantiate(CameraPrefab);
+            var ui = GameObject.Instantiate(UiPrefab);
 
-        var ui = GameObject.Instantiate(UiPrefab);
 
-        RegisterGameModeObject(ui);
+            RegisterGameModeObject(camera);
+            RegisterGameModeObject(ui);
 
-        State = EGameModeState.Started;
+            State = EGameModeState.Started;
 
-        yield return null;
-    }
+            yield return null;
+        }
 
-    public override IEnumerator OnEnd()
-    {
-        State = EGameModeState.Ending;
+        public override IEnumerator OnEnd()
+        {
+            State = EGameModeState.Ending;
 
-        yield return DestroyAllGameModeObjects();
+            yield return DestroyAllGameModeObjects();
 
-        Debug.Log("GameMode endend");
-
-        State = EGameModeState.Ended;
+            State = EGameModeState.Ended;
+        }
     }
 }

@@ -8,17 +8,18 @@ namespace LOK1game.New.Networking
     public enum EServerToClientId : ushort
     {
         SyncTick = 1,
+        SyncLevel,
+        SyncGamemode,
         PlayerSpawned,
         PlayerRespawn,
         PlayerMovement,
-        Pong,
-        SyncLevel,
         PlayerHited,
         PlayerDeath,
         PlayerHealth,
         PlayerLand,
         PlayerLoadout,
         PlayerSwitchWeapon,
+        Pong,
     }
 
     public enum EClientToServerId : ushort
@@ -174,6 +175,14 @@ namespace LOK1game.New.Networking
         private static void SyncLevel(Message message)
         {
             NetworkGameLogic.Instance.SetLevel(message.GetUShort());
+        }
+
+        [MessageHandler((ushort)EServerToClientId.SyncGamemode)]
+        private static void SyncGameMode(Message message)
+        {
+            var gamemode = (EGameModeId)message.GetUShort();
+
+            App.Instance.GameModeManager.SetGameMode(gamemode);
         }
 
         #endregion
