@@ -66,6 +66,8 @@ namespace LOK1game.Test
             var evt = Events.OnPlayerHit;
 
             evt.PlayerId = 999;
+            evt.Damage = damage.Value;
+            evt.HitPosition = damage.HitPoint;
 
             EventManager.Broadcast(evt);
 

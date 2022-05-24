@@ -236,7 +236,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  useOcclusion: 1
+  useOcclusion: 0
   occlusionRadius: 0.35
   sampleCount: 32
   occlusionOffset: 1.09

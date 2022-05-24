@@ -50,7 +50,8 @@ MonoBehaviour:
       type: 3}
     CameraPrefab: {fileID: 779169692165051414, guid: 0f75bdcdb4a7a1a44ab469660a9c9b90,
       type: 3}
-    PlayerPrefab: {fileID: 0}
+    PlayerPrefab: {fileID: 2848328124079822108, guid: c8475148e428d9740950ba2922e84b2e,
+      type: 3}
     PlayerController: {fileID: 0}
   _crystalCaptureGameMode:
     UiPrefab: {fileID: 1954939184536541391, guid: 67d41d7c0e91f2a44a5be022e612a5f5,

@@ -179,6 +179,8 @@ namespace LOK1game.New.Networking
             var evt = Events.OnPlayerHit;
 
             evt.PlayerId = id;
+            evt.Damage = damage.Value;
+            evt.HitPosition = List[id].transform.position + Vector3.up;
             evt.Crit = false;
 
             EventManager.Broadcast(evt);

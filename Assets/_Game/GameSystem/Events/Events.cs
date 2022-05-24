@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace LOK1game.Game.Events
 {
     public static class Events
@@ -12,7 +14,9 @@ namespace LOK1game.Game.Events
     public class OnPlayerHitCHD : GameEvent
     {
         public ushort PlayerId;
+        public Vector3 HitPosition;
         public bool Crit;
+        public int Damage;
     }
 
     public class OnAnimatronicChangeRoomEvent : GameEvent
