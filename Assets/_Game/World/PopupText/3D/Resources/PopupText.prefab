@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218f4850cdba8f947b5ff3ceb2a48208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearSpeed: 3
-  _textMoveDirection: {x: 0, y: 1, z: 0}
-  _textMoveSpeed: 1
+  DisappearSpeed: 3
+  TextMoveDirection: {x: 0, y: 1, z: 0}
+  TextMoveSpeed: 1
   _text: {fileID: 4709110839900180271}
 --- !u!1 &4709110839900180257
 GameObject:

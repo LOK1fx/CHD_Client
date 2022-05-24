@@ -36,6 +36,7 @@ namespace LOK1game.UI
             var angle = Random.Range(-_maxRotationAngleOnHit, _maxRotationAngleOnHit);
 
             transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+            transform.position = Camera.main.WorldToScreenPoint(evt.HitPosition);
 
             if (evt.Crit)
             {

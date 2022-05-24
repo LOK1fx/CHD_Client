@@ -23,7 +23,7 @@ namespace LOK1game
 
             _text.alpha = _alpha;
 
-            transform.position += _offset;
+            transform.position = _initialPosition + _offset;
             transform.LookAt(_playerCameraTransform);
         }
 

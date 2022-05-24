@@ -6,15 +6,16 @@ namespace LOK1game
     {
         private const string PATH = "PopupText";
 
-        [SerializeField] protected float _disappearSpeed = 3f;
-        [SerializeField] private Vector3 _textMoveDirection;
-        [SerializeField] private float _textMoveSpeed = 15f;
+        public float DisappearSpeed = 3f;
+        public Vector3 TextMoveDirection;
+        public float TextMoveSpeed = 15f;
 
         protected PopupTextParams _params;
         protected Vector3 _offset;
         protected float _alpha = 1;
 
         protected float _disappearTimer;
+        protected Vector3 _initialPosition;
 
         public static PopupText Spawn<T>(Vector3 position, Transform parent, PopupTextParams textParams) where T : PopupText
         {
@@ -37,9 +38,14 @@ namespace LOK1game
 
         public abstract void Show(PopupTextParams textParams);
 
+        public void SetPosition(Vector3 position)
+        {
+            _initialPosition = position;
+        }
+
         protected void UpdateOffset()
         {
-            _offset += (_textMoveDirection.normalized * _textMoveSpeed) * Time.deltaTime;
+            _offset += (TextMoveDirection.normalized * TextMoveSpeed) * Time.deltaTime;
         }
 
         protected void UpdateAlpha()
@@ -47,7 +53,7 @@ namespace LOK1game
             _disappearTimer -= Time.deltaTime;
             if (_disappearTimer < 0)
             {
-                _alpha -= _disappearSpeed * Time.deltaTime;
+                _alpha -= DisappearSpeed * Time.deltaTime;
 
                 if (_alpha < 0)
                 {

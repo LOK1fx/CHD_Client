@@ -1,3 +1,4 @@
+using LOK1game.Game.Events;
 using UnityEngine;
 
 namespace LOK1game.World
@@ -25,7 +26,16 @@ namespace LOK1game.World
             {
                 _health.ReduceHealth(damage.Value);
 
-                Debug.Log($"Crystal farm. Farm score - {Mathf.RoundToInt(damage.Value * _farmScoreMultiplier)}");
+                var score = Mathf.RoundToInt(damage.Value * _farmScoreMultiplier);
+
+                Debug.Log($"Crystal farm. Farm score - {score}");
+
+                var evt = Events.OnFarmCrystalCHD;
+
+                evt.HitPosition = damage.HitPoint;
+                evt.Score = score;
+
+                EventManager.Broadcast(evt);
             }
 
             var effect = Instantiate(_hitEffectPrefab, damage.HitPoint, Quaternion.identity);
@@ -45,5 +55,4 @@ namespace LOK1game.World
             Destroy(gameObject);
         }
     }
-
 }

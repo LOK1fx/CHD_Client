@@ -6,9 +6,10 @@ public static class Constants
         public const string RESPAWN = "Respawn";
         public const string FINISH = "Finish";
         public const string PLAYER = "Player";
-        public const string GAME_CONTROLLER = "GameControlled";
+        public const string GAME_CONTROLLER = "GameController";
         public const string EDITOR_ONLY = "EditorOnly";
         public const string UNTAGGED = "Untagged";
+        public const string GAME_MODE_SPECIFIC = "GameModeSpecific";
     }
 
     public static class Gameplay
@@ -20,8 +21,8 @@ public static class Constants
 
     public static class Network
     {
-        public const int SERVER_PORT = 9600;
-        public const int SERVER_TICK_RATE = 64;
+        public const int SERVER_DEFAULT_PORT = 9600;
+        public const int SERVER_DEFAULT_TICK_RATE = 64;
         public const int SERVER_INPUT_BUFFER_SIZE = 1024;
         public const int CLIENT_INPUT_BUFFER_SIZE = 1024;
         public const string LOCAL_HOST = "127.0.0.1";

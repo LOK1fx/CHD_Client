@@ -14,7 +14,7 @@ namespace LOK1game
 
             _text.alpha = _alpha;
 
-            transform.position += _offset;
+            transform.position = _initialPosition + _offset;
         }
 
         public override void Show(PopupTextParams textParams)
