@@ -43,9 +43,9 @@ namespace LOK1game.Player
         {
             Camera.DesiredPosition = Vector3.up * _eyeHeight;
 
-            if(WeaponInventory.Weapons[0] != null)
+            if(WeaponInventory.PrimaryWeapon != null)
             {
-                EquipWeapon(WeaponInventory.Weapons[0]);
+                EquipWeapon(WeaponInventory.PrimaryWeapon);
             }
         }
 
@@ -73,17 +73,17 @@ namespace LOK1game.Player
 
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
-                EquipWeapon(WeaponInventory.Weapons[0]);
+                EquipWeapon(WeaponInventory.PrimaryWeapon);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                EquipWeapon(WeaponInventory.Weapons[1]);
+                EquipWeapon(WeaponInventory.SecondaryWeapon);
             }
             if(Input.GetKeyDown(KeyCode.Q))
             {
                 EquipWeapon(WeaponInventory.Utility);
             }
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(WeaponInventory.Abilities[0].UseKey))
             {
                 EquipWeapon(WeaponInventory.Abilities[0]);
             }

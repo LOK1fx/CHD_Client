@@ -8,7 +8,7 @@ namespace LOK1game.Weapon
     {
         #region Events
 
-        public event Action OnWeaponAtack;
+        public event Action OnWeaponAttack;
         public event Action OnWeaponEquip;
         public event Action OnWeaponDequip;
 
@@ -20,7 +20,7 @@ namespace LOK1game.Weapon
 
         private float _timeToNextShoot;
 
-        public bool TryAtack(object sender, PlayerHand hand)
+        public bool TryAttack(object sender, PlayerHand hand)
         {
             if(sender is Player.Player)
             {
@@ -30,7 +30,7 @@ namespace LOK1game.Weapon
 
                     Atack(sender as Player.Player, hand);
 
-                    OnWeaponAtack?.Invoke();
+                    OnWeaponAttack?.Invoke();
 
                     return true;
                 }

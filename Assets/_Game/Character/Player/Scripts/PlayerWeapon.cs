@@ -11,6 +11,7 @@ namespace LOK1game.Player
 
         public event Action<WeaponData> OnEquip;
         public event Action<WeaponData> OnDequip;
+        public event Action<WeaponData> OnAttack;
         public event Action OnKick;
 
         #endregion
@@ -102,13 +103,15 @@ namespace LOK1game.Player
 
             if(hand == null || hand.CurrentWeaponData == null || hand.CurrentWeaponObject == null) { return; }
 
-            if(hand.CurrentWeapon.TryAtack(_player, hand))
+            if(hand.CurrentWeapon.TryAttack(_player, hand))
             {
                 _armsAnimator.Play("Atack", 0, 0);
 
                 var weaponRecoil = hand.CurrentWeaponData.RecoilCameraRotation;
 
                 _player.Camera.TriggerRecoil(weaponRecoil);
+
+                OnAttack?.Invoke(hand.CurrentWeaponData);
             }
         }
 

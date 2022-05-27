@@ -2,7 +2,7 @@
 {
     public interface IWeapon
     {
-        bool TryAtack(object sender, PlayerHand hand);
+        bool TryAttack(object sender, PlayerHand hand);
         void OnEquip(object sender);
         void OnDequip(object sender);
         WeaponData GetData();
