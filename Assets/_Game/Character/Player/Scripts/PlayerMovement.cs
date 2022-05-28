@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LOK1game.Player
 {
-    [RequireComponent(typeof(PlayerState))]
+    [RequireComponent(typeof(PlayerState), typeof(Rigidbody), typeof(CapsuleCollider))]
     public class PlayerMovement : MonoBehaviour
     {
         #region events
@@ -31,9 +31,9 @@ namespace LOK1game.Player
         [SerializeField] private float _maxSlideTime;
         private float _currentSlideTime;
 
-        [Header("Components")]
-        public Transform DirectionTransform;
+        public Transform DirectionTransform => _directionTransform;
 
+        [SerializeField] private Transform _directionTransform;
         [SerializeField] private PlayerMovementParams _movementData;
 
         private PlayerState _playerState;
@@ -41,7 +41,7 @@ namespace LOK1game.Player
 
         private Vector3 _moveDirection;
         private RaycastHit _slopeHit;
-        private Vector2 _iAxis;
+        private Vector2 _iAxis = new Vector2(0f, 0f);
 
         private Vector3 _oldPosition;
 
@@ -138,8 +138,6 @@ namespace LOK1game.Player
 
                 Rigidbody.velocity = velocity;
                 Rigidbody.AddForce(transform.up * _movementData.JumpForce, ForceMode.Impulse);
-
-                //MoveCamera.Instance.lerpOffset += Vector3.up * _movementData.jumpForce * 0.02f;
 
                 ResetJumpCooldown();
 
@@ -264,11 +262,6 @@ namespace LOK1game.Player
         public Vector2 GetInputMoveAxis()
         {
             return _iAxis;
-        }
-
-        public Transform GetDirectionTransform()
-        {
-            return DirectionTransform;
         }
 
         public int GetRoundedSpeed()

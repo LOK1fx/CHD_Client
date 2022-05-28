@@ -426,7 +426,7 @@ MonoBehaviour:
   _crouchPlayerHeight: 1.5
   _jumpCooldown: 0.1
   _maxSlideTime: 0.4
-  DirectionTransform: {fileID: 6202908498377327868}
+  _directionTransform: {fileID: 6202908498377327868}
   _movementData: {fileID: 11400000, guid: 6455c6b7e75c6f248bc74fe044a61171, type: 2}
 --- !u!114 &7611553036020665982
 MonoBehaviour:
