@@ -11,31 +11,8 @@ namespace LOK1game.New.Networking
         ParkourLevel = 2,
     }
 
-    public class NetworkGameLogic : MonoBehaviour
+    public class NetworkGameLogic : Singleton<NetworkGameLogic>
     {
-        private static NetworkGameLogic _instance;
-
-        public static NetworkGameLogic Instance
-        {
-            get => _instance;
-
-            private set
-            {
-                if (_instance == null)
-                {
-                    _instance = value;
-                }
-                else if (_instance != value)
-                {
-                    Debug.LogWarning($"{nameof(NetworkGameLogic)} instane already exist!");
-
-                    Destroy(value);
-
-                    Debug.Log($"Duplicate of {nameof(NetworkGameLogic)} has been destroyed.");
-                }
-            }
-        }
-
         public GameObject WorldPlayerPrefab => _worldPlayerPrefab;
         public GameObject LocalPlayerPrefab => _localPlayerPrefab;
         public EServerLevelId Level => _level;
@@ -44,12 +21,6 @@ namespace LOK1game.New.Networking
         [SerializeField] private GameObject _worldPlayerPrefab;
         [SerializeField] private GameObject _localPlayerPrefab;
         [SerializeField] private EServerLevelId _level;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
-
 
         public void SetLevel(ushort levelId)
         {

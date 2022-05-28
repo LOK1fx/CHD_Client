@@ -31,31 +31,8 @@ namespace LOK1game.New.Networking
         SwitchWeapon,
     }
 
-    public class NetworkManager : MonoBehaviour
+    public class NetworkManager : Singleton<NetworkManager>
     {
-        private static NetworkManager _instance;
-
-        public static NetworkManager Instance
-        {
-            get => _instance;
-
-            private set
-            {
-                if (_instance == null)
-                {
-                    _instance = value;
-                }
-                else if (_instance != value)
-                {
-                    Debug.LogWarning($"{nameof(NetworkManager)} instane already exist!");
-
-                    Destroy(value);
-
-                    Debug.Log($"Duplicate of {nameof(NetworkManager)} has been destroyed.");
-                }
-            }
-        }
-
         public Client Client { get; private set; }
         public ushort ServerTick
         {
@@ -93,8 +70,6 @@ namespace LOK1game.New.Networking
 
         private void Awake()
         {
-            Instance = this;
-
             RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
 
             Client = new Client();

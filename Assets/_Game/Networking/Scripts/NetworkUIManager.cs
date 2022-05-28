@@ -8,31 +8,8 @@ using Debug = UnityEngine.Debug;
 
 namespace LOK1game.New.Networking
 {
-    public class NetworkUIManager : MonoBehaviour
+    public class NetworkUIManager : Singleton<NetworkUIManager>
     {
-        private static NetworkUIManager _instance;
-
-        public static NetworkUIManager Instance
-        {
-            get => _instance;
-
-            private set
-            {
-                if (_instance == null)
-                {
-                    _instance = value;
-                }
-                else if (_instance != value)
-                {
-                    Debug.LogWarning($"{nameof(NetworkUIManager)} instane already exist!");
-
-                    Destroy(value);
-
-                    Debug.Log($"Duplicate of {nameof(NetworkUIManager)} has been destroyed.");
-                }
-            }
-        }
-
         [SerializeField] private Text _pingText;
 
         [Header("Connect")]
@@ -45,11 +22,6 @@ namespace LOK1game.New.Networking
         [SerializeField] private Text _logText;
 
         private Stopwatch _pingWatch;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
 
         private void Start()
         {

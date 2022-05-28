@@ -3,8 +3,9 @@ using UnityEngine;
 using System;
 using LOK1game.Game;
 
-public class App : MonoBehaviour
+public class App : PersistentSingleton<App>
 {
+    /*
     public static App Instance
     {
         get => _instance;
@@ -27,6 +28,7 @@ public class App : MonoBehaviour
     }
 
     private static App _instance;
+    */
 
     public GameModeManager GameModeManager => _gameModeManager;
     public LevelManager LevelManager => _levelManager;
@@ -66,7 +68,7 @@ public class App : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        //Instance = this;
 
         InitializeComponents();
     }
