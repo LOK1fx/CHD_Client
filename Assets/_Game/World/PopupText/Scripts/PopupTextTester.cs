@@ -12,7 +12,7 @@ namespace LOK1game
 
         private void Awake()
         {
-            EventManager.AddListener<OnPlayerHitCHD>(OnHit);
+            EventManager.AddListener<OnPlayerHitCHDEvent>(OnHit);
         }
 
         private void LateUpdate()
@@ -28,7 +28,7 @@ namespace LOK1game
             }
         }
 
-        private void OnHit(OnPlayerHitCHD evt)
+        private void OnHit(OnPlayerHitCHDEvent evt)
         {
             var textParams = new PopupTextParams(evt.Damage.ToString(), 1f, Color.white);
 
@@ -39,7 +39,7 @@ namespace LOK1game
 
         private void OnDestroy()
         {
-            EventManager.RemoveListener<OnPlayerHitCHD>(OnHit);
+            EventManager.RemoveListener<OnPlayerHitCHDEvent>(OnHit);
         }
     }
 }

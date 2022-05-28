@@ -11,7 +11,7 @@ namespace LOK1game.UI
 
         private void Awake()
         {
-            EventManager.AddListener<OnFarmCrystalCHD>(OnHit);
+            EventManager.AddListener<OnFarmCrystalCHDEvent>(OnHit);
         }
 
         private void LateUpdate()
@@ -29,7 +29,7 @@ namespace LOK1game.UI
             }
         }
 
-        private void OnHit(OnFarmCrystalCHD evt)
+        private void OnHit(OnFarmCrystalCHDEvent evt)
         {
             var position = Camera.main.WorldToScreenPoint(evt.HitPosition);
             var textParams = new PopupTextParams($"+{evt.Score}", 1f, Color.white);
@@ -41,7 +41,7 @@ namespace LOK1game.UI
 
         private void OnDestroy()
         {
-            EventManager.RemoveListener<OnFarmCrystalCHD>(OnHit);
+            EventManager.RemoveListener<OnFarmCrystalCHDEvent>(OnHit);
         }
     }
 }

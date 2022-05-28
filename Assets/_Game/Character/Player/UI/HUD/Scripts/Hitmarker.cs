@@ -26,10 +26,10 @@ namespace LOK1game.UI
 
         private void Start()
         {
-            EventManager.AddListener<OnPlayerHitCHD>(OnHit);
+            EventManager.AddListener<OnPlayerHitCHDEvent>(OnHit);
         }
 
-        private void OnHit(OnPlayerHitCHD evt)
+        private void OnHit(OnPlayerHitCHDEvent evt)
         {
             if(NetworkManager.Instance != null)
             {
@@ -49,7 +49,7 @@ namespace LOK1game.UI
 
         private void OnDestroy()
         {
-            EventManager.RemoveListener<OnPlayerHitCHD>(OnHit);
+            EventManager.RemoveListener<OnPlayerHitCHDEvent>(OnHit);
         }
     }
 }

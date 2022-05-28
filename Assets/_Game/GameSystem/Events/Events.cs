@@ -4,11 +4,18 @@ namespace LOK1game.Game.Events
 {
     public static class Events
     {
-        public static OnPlayerHitCHD OnPlayerHit = new OnPlayerHitCHD();
-        public static OnFarmCrystalCHD OnFarmCrystalCHD = new OnFarmCrystalCHD();
+        public static OnGameStateChangedEvent OnGameStateChanged = new OnGameStateChangedEvent();
+        public static OnPlayerHitCHDEvent OnPlayerHit = new OnPlayerHitCHDEvent();
+        public static OnFarmCrystalCHDEvent OnFarmCrystalCHD = new OnFarmCrystalCHDEvent();
     }
 
-    public class OnPlayerHitCHD : GameEvent
+    public class OnGameStateChangedEvent : GameEvent
+    {
+        public EGameState PreviousState;
+        public EGameState NewGameState;
+    }
+
+    public class OnPlayerHitCHDEvent : GameEvent
     {
         public ushort PlayerId;
         public Vector3 HitPosition;
@@ -16,7 +23,7 @@ namespace LOK1game.Game.Events
         public int Damage;
     }
 
-    public class OnFarmCrystalCHD : GameEvent
+    public class OnFarmCrystalCHDEvent : GameEvent
     {
         public int Score;
         public Vector3 HitPosition;

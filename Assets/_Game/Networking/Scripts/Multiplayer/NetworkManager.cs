@@ -164,8 +164,10 @@ namespace LOK1game.New.Networking
 
         #endregion
 
-        private void OnApplicationQuit()
+        protected override void OnApplicationQuit()
         {
+            base.OnApplicationQuit();
+
             Client.Disconnect();
         }
     }
