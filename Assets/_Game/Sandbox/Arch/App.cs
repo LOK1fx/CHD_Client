@@ -5,31 +5,6 @@ using LOK1game.Game;
 
 public class App : PersistentSingleton<App>
 {
-    /*
-    public static App Instance
-    {
-        get => _instance;
-
-        private set
-        {
-            if (_instance == null)
-            {
-                _instance = value;
-            }
-            else if (_instance != value)
-            {
-                Debug.LogWarning($"{nameof(App)} instane already exist!");
-
-                Destroy(value);
-
-                Debug.Log($"Duplicate of {nameof(App)} has been destroyed.");
-            }
-        }
-    }
-
-    private static App _instance;
-    */
-
     public GameModeManager GameModeManager => _gameModeManager;
     public LevelManager LevelManager => _levelManager;
     public WeaponManager WeaponManager => _weaponManager;
@@ -66,9 +41,9 @@ public class App : PersistentSingleton<App>
 
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
-        //Instance = this;
+        base.Awake();
 
         InitializeComponents();
     }

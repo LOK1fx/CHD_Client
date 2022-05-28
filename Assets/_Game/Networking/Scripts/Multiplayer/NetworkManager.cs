@@ -68,8 +68,10 @@ namespace LOK1game.New.Networking
         [Space(10)]
         [SerializeField] private ushort _tickDivergenceTolerance = 1;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
 
             Client = new Client();
