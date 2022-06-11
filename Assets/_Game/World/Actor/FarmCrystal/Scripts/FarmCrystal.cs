@@ -20,7 +20,7 @@ namespace LOK1game.World
 
         public void TakeDamage(Damage damage)
         {
-            if(damage.DamageType != Damage.Type.Drill) { return; }
+            if(damage.DamageType != EDamageType.Drill) { return; }
 
             if(damage.Sender is Player.Player)
             {

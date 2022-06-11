@@ -11,8 +11,8 @@ namespace LOK1game.Game
         {
             State = EGameModeState.Starting;
 
-            var camera = GameObject.Instantiate(CameraPrefab);
-            var ui = GameObject.Instantiate(UiPrefab);
+            var camera = Instantiate(Data.CameraPrefab);
+            var ui = Instantiate(Data.UiPrefab);
 
 
             RegisterGameModeObject(camera);

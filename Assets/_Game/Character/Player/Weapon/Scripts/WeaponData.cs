@@ -51,7 +51,7 @@ namespace LOK1game.Weapon
         public bool ShootsFromMuzzle => _shootsFromMuzzle;
 
         public EGunBurstMode BurstMode = EGunBurstMode.Semi;
-        public PlayerHand.Side Hand = PlayerHand.Side.Right;
+        public PlayerHand.ESide Hand = PlayerHand.ESide.Right;
 
         [Space]
         [SerializeField] private float _bloom = 25;

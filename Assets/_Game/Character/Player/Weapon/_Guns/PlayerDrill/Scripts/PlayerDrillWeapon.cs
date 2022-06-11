@@ -22,7 +22,7 @@ namespace LOK1game.Weapon
             {
                 if(hit.collider.gameObject.TryGetComponent<IDamagable>(out var damagable))
                 {
-                    var damage = new Damage(data.Damage, Damage.Type.Drill, player)
+                    var damage = new Damage(data.Damage, EDamageType.Drill, player)
                     {
                         HitPoint = hit.point,
                         HitNormal = hit.normal

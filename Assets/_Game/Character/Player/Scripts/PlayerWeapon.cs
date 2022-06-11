@@ -52,8 +52,8 @@ namespace LOK1game.Player
 
             if (HasGun)
             {
-                HandleGunArmInput(PlayerHand.Side.Right); // Right hand
-                HandleGunArmInput(PlayerHand.Side.Left); // Left hand
+                HandleGunArmInput(PlayerHand.ESide.Right); // Right hand
+                HandleGunArmInput(PlayerHand.ESide.Left); // Left hand
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -72,9 +72,9 @@ namespace LOK1game.Player
             }
         }
 
-        private void HandleGunArmInput(PlayerHand.Side hand)
+        private void HandleGunArmInput(PlayerHand.ESide hand)
         {
-            var index = hand == PlayerHand.Side.Right ? 0 : 1;
+            var index = hand == PlayerHand.ESide.Right ? 0 : 1;
 
             if (_playerHands[index].CurrentWeaponData != null)
             {
@@ -97,7 +97,7 @@ namespace LOK1game.Player
             }
         }
 
-        public void Shoot(PlayerHand.Side side)
+        public void Shoot(PlayerHand.ESide side)
         {
             var hand = GetHandBySide(side);
 
@@ -115,7 +115,7 @@ namespace LOK1game.Player
             }
         }
 
-        public void Equip(WeaponData gunData, PlayerHand.Side side)
+        public void Equip(WeaponData gunData, PlayerHand.ESide side)
         {
             Dequip(side);
 
@@ -148,7 +148,7 @@ namespace LOK1game.Player
             OnEquip?.Invoke(weapon.Weapon.GetData());
         }
 
-        public void Dequip(PlayerHand.Side side)
+        public void Dequip(PlayerHand.ESide side)
         {
             var hand = GetHandBySide(side);
 
@@ -166,14 +166,14 @@ namespace LOK1game.Player
             }
         }
 
-        private void DropGun(PlayerHand.Side side)
+        private void DropGun(PlayerHand.ESide side)
         {
             Dequip(side);
 
             _armsAnimator.Play("Drop", 0, 0);
         }
 
-        public PlayerHand GetHandBySide(PlayerHand.Side side)
+        public PlayerHand GetHandBySide(PlayerHand.ESide side)
         {
             foreach (var hand in _playerHands)
             {

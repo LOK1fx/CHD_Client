@@ -10,6 +10,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Arms
+    second: {fileID: 2100000, guid: edc6106c915984de2b613a68e4945671, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Arms.001
+    second: {fileID: 2100000, guid: 5fbfe165b1df12346b0da97d2cb07e6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Dummy
     second: {fileID: 2100000, guid: 5fbfe165b1df12346b0da97d2cb07e6c, type: 2}
   materials:

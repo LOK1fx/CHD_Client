@@ -44,36 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b348e3e3759c84986d87cb5aa2721c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _standardGameModeId: 0
-  _defaultGameMode:
-    UiPrefab: {fileID: 477668509425952702, guid: 83b19753f1207b44795a6603cf5ec2d4,
-      type: 3}
-    CameraPrefab: {fileID: 779169692165051414, guid: 0f75bdcdb4a7a1a44ab469660a9c9b90,
-      type: 3}
-    PlayerPrefab: {fileID: 2848328124079822108, guid: c8475148e428d9740950ba2922e84b2e,
-      type: 3}
-    PlayerController: {fileID: 0}
-  _crystalCaptureGameMode:
-    UiPrefab: {fileID: 1954939184536541391, guid: 67d41d7c0e91f2a44a5be022e612a5f5,
-      type: 3}
-    CameraPrefab: {fileID: 779169692165051414, guid: 0f75bdcdb4a7a1a44ab469660a9c9b90,
-      type: 3}
-    PlayerPrefab: {fileID: 0}
-    PlayerController: {fileID: 0}
-  _pveDefendGameMode:
-    UiPrefab: {fileID: 1954939184536541391, guid: 67d41d7c0e91f2a44a5be022e612a5f5,
-      type: 3}
-    CameraPrefab: {fileID: 779169692165051414, guid: 0f75bdcdb4a7a1a44ab469660a9c9b90,
-      type: 3}
-    PlayerPrefab: {fileID: 0}
-    PlayerController: {fileID: 0}
-  _levelManager:
-    _levelsData:
-    - {fileID: 11400000, guid: 035744442b6b5ef4689763ce31ca1acb, type: 2}
-    - {fileID: 11400000, guid: fb6e494a7b8a49b41a8679eb4ee1f52e, type: 2}
-  _weaponManager:
-    _list:
-    - {fileID: 11400000, guid: 3241ede67b892f34bbb471ca880636a5, type: 2}
-    - {fileID: 11400000, guid: 7b1618072a2f3c742a3cfd23adea5c21, type: 2}
-    - {fileID: 11400000, guid: 120ac702fa9b37f439729f25cc25c353, type: 2}
-    - {fileID: 11400000, guid: 2b6469a9354f20a43a84892971dc7a48, type: 2}
+  _projectContext:
+    _standardGameModeId: 1
+    _gameModes:
+    - {fileID: -5832004417737611778, guid: 07af115885d3c2148a1805879301cc1e, type: 3}
+    - {fileID: 1188805904487936202, guid: 67274e6d5fbae2f428a778f5bd2b0a51, type: 3}
+    - {fileID: 2522667347453790166, guid: 70450f24ae4a84045b2348a9cf1f2bf9, type: 3}
+    _levelManager:
+      _levelsData:
+      - {fileID: 11400000, guid: 035744442b6b5ef4689763ce31ca1acb, type: 2}
+      - {fileID: 11400000, guid: fb6e494a7b8a49b41a8679eb4ee1f52e, type: 2}
+    _weaponManager:
+      _list:
+      - {fileID: 11400000, guid: 3241ede67b892f34bbb471ca880636a5, type: 2}
+      - {fileID: 11400000, guid: 7b1618072a2f3c742a3cfd23adea5c21, type: 2}
+      - {fileID: 11400000, guid: 120ac702fa9b37f439729f25cc25c353, type: 2}
+      - {fileID: 11400000, guid: 2b6469a9354f20a43a84892971dc7a48, type: 2}

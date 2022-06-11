@@ -81,7 +81,7 @@ namespace LOK1game.Weapon
                     return;
                 }
 
-                rb.AddForceAtPosition(_rigidbody.velocity * _damage.Value, hit.point, ForceMode.Impulse);
+                rb.AddForceAtPosition((_rigidbody.velocity * 0.001f) * _damage.Value, hit.point, ForceMode.Impulse);
             }
         }
     }

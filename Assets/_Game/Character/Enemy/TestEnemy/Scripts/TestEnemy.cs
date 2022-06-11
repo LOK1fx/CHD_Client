@@ -37,6 +37,14 @@ namespace LOK1game.Test
             }
         }
 
+        private void OnValidate()
+        {
+            if(_debug_test_is_agent && _debug_test_agent == null)
+            {
+                _debug_test_agent = GetComponent<NavMeshAgent>();
+            }
+        }
+
         private void Update()
         {
             if(_currentResetMatTimer > 0)

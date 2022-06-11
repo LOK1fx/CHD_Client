@@ -13,6 +13,7 @@ public enum EGameModeState : ushort
 
 public enum EGameModeId : ushort
 {
+    None,
     Default,
     CrystalCapture,
     PVE,
@@ -21,20 +22,17 @@ namespace LOK1game.Game
 {
 
     [Serializable]
-    public abstract class BaseGameMode : IGameMode
+    public abstract class BaseGameMode : MonoBehaviour, IGameMode
     {
         public EGameModeState State { get; protected set; }
         public List<GameObject> GameModeSpawnedObjects { get; private set; }
 
+        public GameModeData Data => _data;
+        [SerializeField] GameModeData _data;
+
         private bool _isGameModeObjectListInitialized;
-        protected EGameModeId _id;
 
-        public GameObject UiPrefab;
-        public GameObject CameraPrefab;
-        public GameObject PlayerPrefab;
-        public GameObject PlayerController;
-
-        public EGameModeId Id => _id;
+        public EGameModeId Id => Data.Id;
         public abstract IEnumerator OnEnd();
         public abstract IEnumerator OnStart();
 
@@ -49,14 +47,14 @@ namespace LOK1game.Game
 
             GameModeSpawnedObjects.Add(gameObject);
 
-            GameObject.DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         protected IEnumerator DestroyAllGameModeObjects()
         {
             foreach (var obj in GameModeSpawnedObjects)
             {
-                GameObject.Destroy(obj);
+                Destroy(obj);
 
                 yield return new WaitForEndOfFrame();
             }

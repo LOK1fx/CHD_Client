@@ -25,6 +25,13 @@ namespace LOK1game.Player
         {
             var normal = collision.contacts[0].normal;
 
+            if(collision.contacts[0].otherCollider.gameObject.TryGetComponent<Rigidbody>(out var rigidbody))
+            {
+                if(!rigidbody.isKinematic)
+                {
+                    return;
+                }
+            }
             if (IsWall(normal) && _player != null)
             {
                 Vault();

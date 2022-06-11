@@ -16,11 +16,6 @@ namespace LOK1game.Game
         public int ProgressGoal { get; private set; }
         public int CurrentProgress { get; private set; }
 
-        public CrystalCaptureGameMode(EGameModeId id)
-        {
-            _id = id;
-        }
-
         public void AddProgress(int value)
         {
             CurrentProgress += value;
@@ -32,8 +27,8 @@ namespace LOK1game.Game
         {
             State = EGameModeState.Starting;
 
-            var camera = GameObject.Instantiate(CameraPrefab);
-            var ui = GameObject.Instantiate(UiPrefab);
+            var camera = Instantiate(Data.CameraPrefab);
+            var ui = Instantiate(Data.UiPrefab);
 
 
             RegisterGameModeObject(camera);

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e82967301a2a54695f69a8aaa5afdd, type: 3}
+  m_Name: CrystalCaptureGameModeData
+  m_EditorClassIdentifier: 
+  _id: 2
+  _uiPrefab: {fileID: 1954939184536541391, guid: 67d41d7c0e91f2a44a5be022e612a5f5,
+    type: 3}
+  _cameraPrefab: {fileID: 779169692165051414, guid: 0f75bdcdb4a7a1a44ab469660a9c9b90,
+    type: 3}
+  _playerPrefab: {fileID: 560224126738436198, guid: a09de93cfdb75874986f60d282a9ba78,
+    type: 3}
+  _playerController: {fileID: 0}

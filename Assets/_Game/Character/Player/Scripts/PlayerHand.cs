@@ -5,7 +5,7 @@ namespace LOK1game
 {
     public class PlayerHand : MonoBehaviour
     {
-        public enum Side
+        public enum ESide
         {
             Right,
             Left
@@ -16,9 +16,9 @@ namespace LOK1game
         public Transform Socket => _socket;
 
         [Space]
-        [SerializeField] private Side _handSide;
+        [SerializeField] private ESide _handSide;
 
-        public Side HandSide => _handSide;
+        public ESide HandSide => _handSide;
 
         public WeaponData CurrentWeaponData { get; private set; }
         public GameObject CurrentWeaponObject { get; private set; }

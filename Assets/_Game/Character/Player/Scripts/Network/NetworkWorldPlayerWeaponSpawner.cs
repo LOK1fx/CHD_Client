@@ -31,7 +31,7 @@ namespace LOK1game.New.Networking
             EquipWeapon(weapon, weapon.Hand);
         }
 
-        private void EquipWeapon(WeaponData data, PlayerHand.Side side)
+        private void EquipWeapon(WeaponData data, PlayerHand.ESide side)
         {
             var hand = GetHandBySide(side);
 
@@ -56,9 +56,9 @@ namespace LOK1game.New.Networking
             hand.SetWeapon(weapon);
         }
 
-        private PlayerHand GetHandBySide(PlayerHand.Side side)
+        private PlayerHand GetHandBySide(PlayerHand.ESide side)
         {
-            if(side == PlayerHand.Side.Right)
+            if(side == PlayerHand.ESide.Right)
             {
                 return _hands[0];
             }

@@ -50,7 +50,7 @@ namespace LOK1game.Editor
 
                 if(_registerWeaponToWeaponManager)
                 {
-                    GetApp().WeaponManager.Editor_AddWeapon(data);
+                    App.ProjectContext.WeaponManager.Editor_AddWeapon(data);
                     WeaponLibrary.Editor_AddWeapon(data);
                 }
 

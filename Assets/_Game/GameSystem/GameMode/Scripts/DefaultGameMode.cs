@@ -4,20 +4,14 @@ using System;
 
 namespace LOK1game.Game
 {
-    [Serializable]
     public sealed class DefaultGameMode : BaseGameMode
     {
-        public DefaultGameMode(EGameModeId id)
-        {
-            _id = id;
-        }
-
         public override IEnumerator OnStart()
         {
             State = EGameModeState.Starting;
 
-            var camera = GameObject.Instantiate(CameraPrefab);
-            var ui = GameObject.Instantiate(UiPrefab);
+            var camera = Instantiate(Data.CameraPrefab);
+            var ui = Instantiate(Data.UiPrefab);
 
 
             RegisterGameModeObject(camera);

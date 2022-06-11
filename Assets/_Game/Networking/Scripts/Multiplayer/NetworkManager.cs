@@ -159,7 +159,7 @@ namespace LOK1game.New.Networking
         {
             var gamemode = (EGameModeId)message.GetUShort();
 
-            App.Instance.GameModeManager.SetGameMode(gamemode);
+            App.ProjectContext.GameModeManager.SetGameMode(gamemode);
         }
 
         #endregion

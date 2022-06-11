@@ -5,7 +5,6 @@ using LOK1game.Tools;
 
 namespace LOK1game.Game
 {
-    [System.Serializable]
     public struct GameModeContainer
     {
         public EGameModeId Id;
@@ -18,7 +17,6 @@ namespace LOK1game.Game
         }
     }
 
-    [System.Serializable]
     public sealed class GameModeManager
     {
         public IGameMode CurrentGameMode { get; private set; }
@@ -26,7 +24,7 @@ namespace LOK1game.Game
         private readonly List<GameModeContainer> _gameModes = new List<GameModeContainer>();
         private bool _isSwithing;
 
-        public void IntializeGameMode(EGameModeId id, IGameMode mode)
+        public void AddGameMode(EGameModeId id, IGameMode mode)
         {
             _gameModes.Add(new GameModeContainer(id, mode));
         }

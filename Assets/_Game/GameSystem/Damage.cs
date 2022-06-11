@@ -2,19 +2,19 @@ using UnityEngine;
 
 namespace LOK1game
 {
+    public enum EDamageType : ushort
+    {
+        Normal = 1,
+        Lazer,
+        Void,
+        Hit,
+        Drill,
+    }
+
     public struct Damage
     {
-        public enum Type : ushort
-        {
-            Normal = 1,
-            Lazer,
-            Void,
-            Hit,
-            Drill,
-        }
-
         public Actor Sender { get; private set; }
-        public Type DamageType { get; private set; }
+        public EDamageType DamageType { get; private set; }
         public int Value { get; private set; }
 
         public Vector3 HitPoint { get; set; }
@@ -24,13 +24,13 @@ namespace LOK1game
         {
             Sender = null;
             Value = value;
-            DamageType = Type.Normal;
+            DamageType = EDamageType.Normal;
 
             HitPoint = Vector3.zero;
             HitNormal = Vector3.zero;
         }
 
-        public Damage(int value, Type type)
+        public Damage(int value, EDamageType type)
         {
             Sender = null;
             Value = value;
@@ -40,7 +40,7 @@ namespace LOK1game
             HitNormal = Vector3.zero;
         }
 
-        public Damage(int value, Type type, Actor sender)
+        public Damage(int value, EDamageType type, Actor sender)
         {
             Sender = sender;
             Value = value;
@@ -54,7 +54,7 @@ namespace LOK1game
         {
             Sender = sender;
             Value = value;
-            DamageType = Type.Normal;
+            DamageType = EDamageType.Normal;
 
             HitPoint = Vector3.zero;
             HitNormal = Vector3.zero;
