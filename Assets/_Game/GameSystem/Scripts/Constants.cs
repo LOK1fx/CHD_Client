@@ -33,6 +33,15 @@ public static class Constants
         public const string WEAPON_DATA_PATH = "Assets/_Game/Character/Player/Weapon/_Data";
         public const string WEAPON_PREFAB_PATH = "Assets/_Game/Character/Player/Weapon/_Guns";
         public const string APP_PATH = "Assets/_Game/GameSystem/App/Resources/[App].prefab";
+        public const string LEVEL_DB_PATH = "Assets/_Game/GameSystem/Levels/Data/" + LEVEL_DB_LINKER_ASSET_NAME + Extensions.ASSET; //name.asset
+        public const string LEVEL_DB_LINKER_ASSET_NAME = "_LevelDB_Linker(Don't delete)";
         public const int APP_FILE_INSTANCE_ID = -1; //not currently definded
+
+        public class Extensions
+        {
+            public const string ASSET = ".asset";
+            public const string PREFAB = ".prefab";
+            public const string CONTROLLER = ".controller";
+        }
     }
 }
