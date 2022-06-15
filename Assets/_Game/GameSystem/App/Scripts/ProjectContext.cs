@@ -31,7 +31,7 @@ namespace LOK1game
 
             foreach (var gamemode in _gameModes)
             {
-                _gameModeManager.AddGameMode(gamemode.Data.Id, gamemode);
+                _gameModeManager.AddGameMode(gamemode.Id, gamemode);
             }
 
             _gameModeManager.SetGameMode(_standardGameModeId);

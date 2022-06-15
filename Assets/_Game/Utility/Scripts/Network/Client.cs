@@ -16,7 +16,7 @@ namespace LOK1game.Networking
 
         public bool IsConnected = false;
 
-        public string Ip = Constants.Network.LOCAL_HOST; //Local ip
+        public string Ip = Constants.Network.LOCAL_HOST_IP; //Local ip
         public int Port = Constants.Network.SERVER_DEFAULT_PORT;
         public int LocalId = 0;
         public TCP Tcp;

@@ -25,7 +25,7 @@ public static class Constants
         public const int SERVER_DEFAULT_TICK_RATE = 64;
         public const int SERVER_INPUT_BUFFER_SIZE = 1024;
         public const int CLIENT_INPUT_BUFFER_SIZE = 1024;
-        public const string LOCAL_HOST = "127.0.0.1";
+        public const string LOCAL_HOST_IP = "127.0.0.1";
     }
 
     public static class Editor
@@ -33,6 +33,6 @@ public static class Constants
         public const string WEAPON_DATA_PATH = "Assets/_Game/Character/Player/Weapon/_Data";
         public const string WEAPON_PREFAB_PATH = "Assets/_Game/Character/Player/Weapon/_Guns";
         public const string APP_PATH = "Assets/_Game/GameSystem/App/Resources/[App].prefab";
-        public const int APP_INSTANCE_ID = -1; //not currently definded
+        public const int APP_FILE_INSTANCE_ID = -1; //not currently definded
     }
 }

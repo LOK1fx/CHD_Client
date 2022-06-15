@@ -62,7 +62,7 @@ namespace LOK1game.New.Networking
 
         private ushort _ticksBetweenPositionUpdates;
 
-        [SerializeField] private string _ip = Constants.Network.LOCAL_HOST;
+        [SerializeField] private string _ip = Constants.Network.LOCAL_HOST_IP;
         [SerializeField] private ushort _port = Constants.Network.SERVER_DEFAULT_PORT;
 
         [Space(10)]

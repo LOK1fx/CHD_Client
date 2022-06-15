@@ -27,12 +27,21 @@ namespace LOK1game.Game
         public EGameModeState State { get; protected set; }
         public List<GameObject> GameModeSpawnedObjects { get; private set; }
 
-        public GameModeData Data => _data;
-        [SerializeField] GameModeData _data;
+        public EGameModeId Id => _id;
+        public GameObject UiPrefab => _uiPrefab;
+        public GameObject CameraPrefab => _cameraPrefab;
+        public GameObject PlayerPrefab => _playerPrefab;
+        public GameObject PlayerController => _playerController;
+
+        [SerializeField] private EGameModeId _id = EGameModeId.None;
+        [SerializeField] private GameObject _uiPrefab;
+        [SerializeField] private GameObject _cameraPrefab;
+        [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private GameObject _playerController;
 
         private bool _isGameModeObjectListInitialized;
 
-        public EGameModeId Id => Data.Id;
+
         public abstract IEnumerator OnEnd();
         public abstract IEnumerator OnStart();
 

@@ -28,7 +28,7 @@ namespace LOK1game.New.Networking
             NetworkManager.Instance.Client.Connected += OnConnected;
             NetworkManager.Instance.Client.Disconnected += OnDisconnected;
 
-            _ipField.text = Constants.Network.LOCAL_HOST;
+            _ipField.text = Constants.Network.LOCAL_HOST_IP;
             _pingWatch = new Stopwatch();
         }
 
