@@ -20,6 +20,13 @@ namespace LOK1game.Game
     public sealed class GameModeManager
     {
         public IGameMode CurrentGameMode { get; private set; }
+        public EGameModeId CurrentGameModeId
+        {
+            get
+            {
+                return CurrentGameMode.Id;
+            }
+        }
 
         private readonly List<GameModeContainer> _gameModes = new List<GameModeContainer>();
         private bool _isSwithing;

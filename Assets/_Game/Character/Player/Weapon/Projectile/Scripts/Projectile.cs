@@ -15,9 +15,6 @@ namespace LOK1game.Weapon
         [SerializeField] private QueryTriggerInteraction _triggerInteraction;
         [SerializeField] private float _lifeTime = 4f;
 
-        [Space]
-        [SerializeField] private GameObject _bulletHolePrefab;
-
         private Rigidbody _rigidbody;
         private Damage _damage;
 
@@ -54,9 +51,7 @@ namespace LOK1game.Weapon
 #if UNITY_EDITOR
 
             if(_showDebugPaths)
-            {
                 Debug.DrawLine(_previusPosition, transform.position, Color.yellow, 1f);
-            }
 
 #endif
 
@@ -72,14 +67,15 @@ namespace LOK1game.Weapon
 
             if (gameObject.TryGetComponent<IDamagable>(out var damagable))
             {
-                damagable.TakeDamage(_damage);
+                var damagables = gameObject.GetComponents<IDamagable>();
+
+                foreach (var damage in damagables)
+                    damage.TakeDamage(_damage);
             }
             if(gameObject.TryGetComponent<Rigidbody>(out var rb))
             {
                 if(gameObject.TryGetComponent<Actor>(out var actor))
-                {
                     return;
-                }
 
                 rb.AddForceAtPosition((_rigidbody.velocity * 0.001f) * _damage.Value, hit.point, ForceMode.Impulse);
             }

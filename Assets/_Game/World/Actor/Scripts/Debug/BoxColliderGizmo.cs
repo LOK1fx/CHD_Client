@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LOK1game.World
+namespace LOK1game.DebugTools
 {
     [RequireComponent(typeof(BoxCollider))]
     public class BoxColliderGizmo : MonoBehaviour

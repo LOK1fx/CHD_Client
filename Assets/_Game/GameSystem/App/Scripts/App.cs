@@ -16,7 +16,7 @@ namespace LOK1game
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Bootstrap()
         {
-            var app = Instantiate(Resources.Load(_appGameObjectName)) as GameObject;
+            var app = Instantiate(Resources.Load<App>(_appGameObjectName));
 
             if (app == null)
             {
@@ -24,21 +24,16 @@ namespace LOK1game
             }
 
             app.name = _appGameObjectName;
+            app.InitializeComponents();
 
             DontDestroyOnLoad(app);
         }
 
         #endregion
 
-        private void Awake()
-        {
-            InitializeComponents();
-        }
-
         private void InitializeComponents()
         {
             ProjectContext = _projectContext;
-
             ProjectContext.Intialize(this);
         }
     }

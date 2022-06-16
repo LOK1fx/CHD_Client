@@ -1,13 +1,16 @@
 ﻿using LOK1game.Game;
 using LOK1game.Weapon;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace LOK1game
 {
-    [System.Serializable]
+    [Serializable]
     public sealed class ProjectContext : Context
     {
+        public event Action OnInitialized;
+
         public GameModeManager GameModeManager => _gameModeManager;
         public LevelManager LevelManager => _levelManager;
         public WeaponManager WeaponManager => _weaponManager;
@@ -35,6 +38,8 @@ namespace LOK1game
             }
 
             _gameModeManager.SetGameMode(_standardGameModeId);
+
+            OnInitialized?.Invoke();
         }
     }
 }

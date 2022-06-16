@@ -4,11 +4,11 @@ namespace LOK1game.Game
 {
     public enum EGameState
     {
-        Going,
+        Gameplay,
         Paused
     }
 
-    public class GameManager : PersistentSingleton<GameManager>
+    public class GameStateManager : PersistentSingleton<GameStateManager>
     {
         public EGameState CurrentGameState { get; private set; }
 
